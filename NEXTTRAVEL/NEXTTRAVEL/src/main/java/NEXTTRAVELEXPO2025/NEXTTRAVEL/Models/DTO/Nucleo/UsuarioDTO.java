@@ -28,4 +28,6 @@ public class UsuarioDTO {
     @Size(min = 6, max = 200)
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
+
+    private String imagenUrl;
 }

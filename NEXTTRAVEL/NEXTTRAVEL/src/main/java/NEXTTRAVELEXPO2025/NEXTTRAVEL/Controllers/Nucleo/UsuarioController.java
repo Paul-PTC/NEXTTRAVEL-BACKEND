@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -24,6 +25,8 @@ import java.util.Map;
 
 @Slf4j
 @RestController
+@CrossOrigin(origins = "http://localhost")
+@EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
 public class UsuarioController {
@@ -39,7 +42,7 @@ public class UsuarioController {
     }
 
     // GET: listar todos (paginado + orden) -> /api/usuarios/usuarios/listar
-    @GetMapping("/usuarios/listar")
+    @GetMapping("/obtenerUsuarios")
     public ResponseEntity<Page<UsuarioDTO>> listar(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -86,7 +89,7 @@ public class UsuarioController {
     }
 
     // POST: crear -> /api/usuarios/usuarios
-    @PostMapping("/usuarios")
+    @PostMapping("/crearUsuarios")
     public ResponseEntity<?> crear(@Valid @RequestBody UsuarioDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> fieldErrors = new HashMap<>();
@@ -120,7 +123,7 @@ public class UsuarioController {
     }
 
     // PUT: actualizar por ID -> /api/usuarios/usuarios/{id}
-    @PutMapping("/usuarios/{id}")
+    @PutMapping("/actualizarUsuarios/{id}")
     public ResponseEntity<?> actualizarPorId(
             @PathVariable Long id,
             @Valid @RequestBody UsuarioDTO dto,
@@ -149,7 +152,7 @@ public class UsuarioController {
     }
 
     // DELETE: eliminar por ID -> /api/usuarios/usuarios/{id}
-    @DeleteMapping("/usuarios/{id}")
+    @DeleteMapping("/eliminarUsuarios/{id}")
     public ResponseEntity<?> eliminarPorId(@PathVariable Long id) {
         try {
             boolean eliminado = usuarioService.eliminarPorId(id);

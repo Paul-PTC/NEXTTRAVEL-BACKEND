@@ -1,106 +1,175 @@
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Config\PasswordConfig.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Lugar\CalificacionLugarController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Lugar\LugarMediaController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Lugar\LugarTuristicoController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\ClienteController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\EmpleadoController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\EstadoController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\RangoEmpleadoController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\UsuarioController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\MovimientoPuntosController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\PromocionController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\PuntosClienteController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\ReglaPuntosDescuentoController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Reservas\EstadoViajeController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Reservas\ReservaController.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\CalificacionLugar.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\LugarMedia.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\LugarTuristico.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\VwCalificacionLugar.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\VwLugarMedia.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\Cliente.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\Empleado.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\Estado.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\RangoEmpleado.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\Usuario.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\VwCliente.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\VwEmpleado.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\DescuentoAplicado.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\MovimientoPuntos.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\Promocion.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\PuntosCliente.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\ReglaPuntosDescuento.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\VwDescuentoAplicado.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\Calificacion.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\EstadoViaje.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\Reserva.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\VwEstadoViaje.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\VwReserva.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\ApiResponse\ApiResponse.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\CalificacionLugarDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\LugarMediaDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\LugarTuristicoDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\VwCalificacionLugarDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\VwLugarMediaDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\ClienteDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\EmpleadoDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\EstadoDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\RangoEmpleadoDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\UsuarioDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\VwClienteDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\VwEmpleadoDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\DescuentoAplicadoDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\MovimientoPuntosDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\PromocionDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\PuntosClienteDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\ReglaPuntosDescuentoDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\VwDescuentoAplicadoDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\CalificacionDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\EstadoViajeDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\ReservaDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\VwEstadoViajeDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\VwReservaDTO.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\NexttravelApplication.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\CalificacionLugarRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\LugarMediaRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\LugarTuristicoRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\VwCalificacionLugarRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\VwLugarMediaRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\ClienteRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\EmpleadoRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\EstadoRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\RangoEmpleadoRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\UsuarioRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\VwClienteRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\VwEmpleadoRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\MovimientoPuntosRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\PromocionRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\PuntosClienteRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\ReglaPuntosDescuentoRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\CalificacionRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\EstadoViajeRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\ReservaRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\VwEstadoViajeRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\VwReservaRepository.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\CalificacionLugarService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\LugarMediaService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\LugarTuristicoService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\VwCalificacionLugarService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\VwLugarMediaService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\ClienteService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\EmpleadoService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\EstadoService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\RangoEmpleadoService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\UsuarioService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\VwClienteService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\VwEmpleadoService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\MovimientoPuntosService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\PromocionService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\PuntosClienteService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\ReglaPuntosDescuentoService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\CalificacionService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\EstadoViajeService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\ReservaService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\VwEstadoViajeService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\VwReservaService.java
-C:\Users\paulc\OneDrive\Escritorio\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\ServletInitializer.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Config\PasswordConfig.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Config\Cloudinary\CloudinaryConfig.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Lugar\CalificacionLugarController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Lugar\LugarMediaController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Lugar\LugarTuristicoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\ClienteController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\EmpleadoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\EstadoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\RangoEmpleadoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Nucleo\UsuarioController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\DescuentoAplicadoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\DetallePagoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\GananciaController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\GastoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\MovimientoPuntosController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\PagoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\PromocionController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\PuntosClienteController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\ReglaPuntosDescuentoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\TipoGastoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Reservas\EstadoViajeController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Reservas\ReservaController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Seguridad\CodigoVerificacionController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Vehiculo\DetalleMantenimientoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Vehiculo\MantenimientoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Vehiculo\TipoMantenimientoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Vehiculo\VehiculoController.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\CalificacionLugar.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\LugarMedia.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\LugarTuristico.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\VwCalificacionLugar.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\VwLugarMedia.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\Cliente.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\Empleado.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\Estado.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\RangoEmpleado.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\Usuario.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\VwCliente.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Nucleo\VwEmpleado.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\DescuentoAplicado.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\DetallePago.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\Ganancia.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\Gasto.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\MovimientoPuntos.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\Pago.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\Promocion.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\PuntosCliente.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\ReglaPuntosDescuento.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\TipoGasto.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\VwDescuentoAplicado.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\VwGanancia.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\VwGasto.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\Calificacion.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\EstadoViaje.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\Reserva.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\VwEstadoViaje.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\VwReserva.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Seguridad\CodigoVerificacion.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Vehiculo\DetalleMantenimiento.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Vehiculo\Mantenimiento.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Vehiculo\TipoMantenimiento.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Vehiculo\Vehiculo.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Vehiculo\VwMantenimiento.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\ApiResponse\ApiResponse.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\CalificacionLugarDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\LugarMediaDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\LugarTuristicoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\VwCalificacionLugarDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\VwLugarMediaDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\ClienteDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\EmpleadoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\EstadoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\RangoEmpleadoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\UsuarioDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\VwClienteDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Nucleo\VwEmpleadoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\DescuentoAplicadoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\DetallePagoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\GananciaDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\GastoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\MovimientoPuntosDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\PagoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\PromocionDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\PuntosClienteDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\ReglaPuntosDescuentoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\TipoGastoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\VwDescuentoAplicadoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\VwGananciaDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\VwGastoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\CalificacionDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\EstadoViajeDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\ReservaDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\VwEstadoViajeDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\VwReservaDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Seguridad\CodigoVerificacionDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Vehiculo\DetalleMantenimientoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Vehiculo\MantenimientoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Vehiculo\TipoMantenimientoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Vehiculo\VehiculoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Vehiculo\VwMantenimientoDTO.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\NexttravelApplication.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\CalificacionLugarRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\LugarMediaRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\LugarTuristicoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\VwCalificacionLugarRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Lugar\VwLugarMediaRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\ClienteRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\EmpleadoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\EstadoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\RangoEmpleadoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\UsuarioRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\VwClienteRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\VwEmpleadoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\DescuentoAplicadoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\DetallePagoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\GananciaRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\GastoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\MovimientoPuntosRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\PagoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\PromocionRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\PuntosClienteRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\ReglaPuntosDescuentoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\TipoGastoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\VwDescuentoAplicadoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\VwGananciaRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Pago\VwGastoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\CalificacionRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\EstadoViajeRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\ReservaRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\VwEstadoViajeRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Reservas\VwReservaRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Seguridad\CodigoVerificacionRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Vehiculo\DetalleMantenimientoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Vehiculo\MantenimientoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Vehiculo\TipoMantenimientoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Vehiculo\VehiculoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Vehiculo\VwMantenimientoRepository.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Cloudinary\CloudinaryService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\CalificacionLugarService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\LugarMediaService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\LugarTuristicoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\VwCalificacionLugarService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Lugar\VwLugarMediaService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\ClienteService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\EmpleadoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\EstadoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\RangoEmpleadoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\UsuarioService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\VwClienteService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Nucleo\VwEmpleadoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\DescuentoAplicadoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\DetallePagoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\GananciaService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\GastoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\MovimientoPuntosService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\PagoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\PromocionService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\PuntosClienteService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\ReglaPuntosDescuentoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\TipoGastoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\VwDescuentoAplicadoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\VwGananciaService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\VwGastoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\CalificacionService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\EstadoViajeService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\ReservaService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\VwEstadoViajeService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Reservas\VwReservaService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Seguridad\CodigoVerificacionService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Vehiculo\DetalleMantenimientoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Vehiculo\MantenimientoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Vehiculo\TipoMantenimientoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Vehiculo\VehiculoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Vehiculo\VwMantenimientoService.java
+C:\Users\Mario Arteaga\Desktop\NEXTTRAVEL-BACKEND\NEXTTRAVEL\NEXTTRAVEL\src\main\java\NEXTTRAVELEXPO2025\NEXTTRAVEL\ServletInitializer.java
