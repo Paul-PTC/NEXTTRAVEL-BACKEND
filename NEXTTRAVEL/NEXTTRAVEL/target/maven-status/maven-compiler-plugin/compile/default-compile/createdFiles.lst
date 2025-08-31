@@ -3,6 +3,7 @@ NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Reservas\Reserva.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\CalificacionLugar.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\CalificacionLugarDTO.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Services\Pago\GananciaService.class
+NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Cloudinary\ImageController.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Reservas\VwEstadoViajeDTO.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Vehiculo\Mantenimiento$MantenimientoBuilder.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\ReglaPuntosDescuentoDTO$ReglaPuntosDescuentoDTOBuilder.class
@@ -95,7 +96,6 @@ NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\MovimientoPuntos.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Pago\DescuentoAplicadoController.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Repositories\Nucleo\EmpleadoRepository.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Vehiculo\TipoMantenimientoDTO$TipoMantenimientoDTOBuilder.class
-NEXTTRAVELEXPO2025\NEXTTRAVEL\Controllers\Config\Cloudinary\CloudinaryConfig.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Vehiculo\Vehiculo.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\PromocionDTO.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Lugar\CalificacionLugar$CalificacionLugarBuilder.class
@@ -211,6 +211,7 @@ NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Lugar\CalificacionLugarDTO$Calificacion
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\Promocion$PromocionBuilder.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\PuntosCliente$PuntosClienteBuilder.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Vehiculo\DetalleMantenimientoDTO$DetalleMantenimientoDTOBuilder.class
+NEXTTRAVELEXPO2025\NEXTTRAVEL\Cloudinary\CloudinaryConfig.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Models\DTO\Pago\GananciaDTO.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Vehiculo\TipoMantenimiento$TipoMantenimientoBuilder.class
 NEXTTRAVELEXPO2025\NEXTTRAVEL\Entities\Pago\MovimientoPuntos$MovimientoPuntosBuilder.class

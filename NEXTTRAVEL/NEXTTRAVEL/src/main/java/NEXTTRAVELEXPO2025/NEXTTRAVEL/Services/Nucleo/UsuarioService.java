@@ -22,11 +22,14 @@ public class UsuarioService {
     // ===== Helpers =====
     private UsuarioDTO toDTO(Usuario u) {
         return UsuarioDTO.builder()
+                .idUsuario(u.getIdUsuario())
                 .nombreUsuario(u.getNombreUsuario())
                 .correo(u.getCorreo())
                 .rol(u.getRol())
+                .Foto_Url(u.getFoto_Url()) // CORREGIDO: Usando fotUrl
                 .build();
     }
+
     private boolean notBlank(String s) { return s != null && !s.isBlank(); }
 
     // ===== Listado / Búsquedas =====
@@ -66,7 +69,9 @@ public class UsuarioService {
                 .nombreUsuario(dto.getNombreUsuario())
                 .correo(dto.getCorreo())
                 .rol(dto.getRol())
+                .idUsuario(dto.getIdUsuario())
                 .contraseniaHash(passwordEncoder.encode(dto.getPassword()))
+                .Foto_Url(dto.getFoto_Url()) // CORREGIDO: Usando fotUrl
                 .build();
 
         Usuario guardado = repo.save(u);
@@ -95,6 +100,10 @@ public class UsuarioService {
 
         if (notBlank(dto.getRol())) {
             u.setRol(dto.getRol());
+        }
+
+        if (notBlank(dto.getFoto_Url())) { // CORREGIDO: Usando fotUrl
+            u.setFoto_Url(dto.getFoto_Url());
         }
 
         if (notBlank(dto.getPassword())) {

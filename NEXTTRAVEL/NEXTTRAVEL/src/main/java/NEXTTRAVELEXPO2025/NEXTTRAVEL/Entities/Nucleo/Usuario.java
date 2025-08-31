@@ -33,4 +33,8 @@ public class Usuario {
 
     @Column(name = "ROL", nullable = false, length = 50)
     private String rol;
+
+    @Column(name = "Foto_Url") // Campo de la imagen
+    private String Foto_Url;
+
 }

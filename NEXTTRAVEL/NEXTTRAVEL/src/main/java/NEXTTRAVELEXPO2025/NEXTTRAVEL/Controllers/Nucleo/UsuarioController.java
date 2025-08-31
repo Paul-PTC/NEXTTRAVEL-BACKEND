@@ -1,39 +1,38 @@
 package NEXTTRAVELEXPO2025.NEXTTRAVEL.Controllers.Nucleo;
 
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Nucleo.UsuarioDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Cloudinary.CloudinaryService;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Nucleo.UsuarioService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.web.bind.annotation.*;
-
-import jakarta.persistence.EntityNotFoundException;
-
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
 @CrossOrigin(origins = "http://localhost")
-@EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final CloudinaryService cservice; // Inyecta el servicio de Cloudinary
 
-    // ===== Helpers =====
+    // Helper para construir Pageable
     private Pageable buildPageable(int page, int size, String sort) {
         String[] s = sort.split(",");
         Sort.Direction dir = (s.length > 1 && "desc".equalsIgnoreCase(s[1]))
@@ -41,130 +40,156 @@ public class UsuarioController {
         return PageRequest.of(page, size, Sort.by(new Sort.Order(dir, s[0])));
     }
 
-    // GET: listar todos (paginado + orden) -> /api/usuarios/usuarios/listar
-    @GetMapping("/obtenerUsuarios")
-    public ResponseEntity<Page<UsuarioDTO>> listar(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "nombreUsuario,asc") String sort
-    ) {
-        Pageable pageable = buildPageable(page, size, sort);
-        return ResponseEntity.ok(usuarioService.listar(pageable));
+    // Helper para manejar errores de validación
+    private ResponseEntity<Map<String, Object>> handleValidationErrors(BindingResult result) {
+        Map<String, String> fieldErrors = result.getFieldErrors().stream()
+                .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
+
+        Map<String, Object> errorResponse = new HashMap<>();
+        errorResponse.put("status", "error");
+        errorResponse.put("message", "Datos de validación inválidos");
+        errorResponse.put("errors", fieldErrors);
+        return ResponseEntity.badRequest().body(errorResponse);
     }
 
-    // GET: buscar por NOMBRE (parcial) -> /api/usuarios/usuarios/buscar/{nombre}
-    @GetMapping("/usuarios/buscarN/{nombre}")
-    public ResponseEntity<Page<UsuarioDTO>> buscarPorNombre(
-            @PathVariable String nombre,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "nombreUsuario,asc") String sort
-    ) {
-        Pageable pageable = buildPageable(page, size, sort);
-        return ResponseEntity.ok(usuarioService.buscarPorNombre(nombre, pageable));
+    // Helper para manejar errores de negocio
+    private ResponseEntity<Map<String, String>> handleBusinessError(String message) {
+        return ResponseEntity.badRequest().body(Map.of(
+                "status", "error",
+                "message", message
+        ));
     }
 
-    // GET: buscar por CORREO (parcial; recuerda URL-encode para '@') -> /api/usuarios/usuarios/buscar/correo/{correo}
-    @GetMapping("/usuarios/buscarC/{correo}")
-    public ResponseEntity<Page<UsuarioDTO>> buscarPorCorreo(
-            @PathVariable String correo,
+    @GetMapping
+    public ResponseEntity<?> listar(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "correo,asc") String sort
+            @RequestParam(defaultValue = "nombreUsuario,asc") String sort,
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) String searchType
     ) {
         Pageable pageable = buildPageable(page, size, sort);
-        return ResponseEntity.ok(usuarioService.buscarPorCorreo(correo, pageable));
-    }
+        Page<UsuarioDTO> resultPage;
 
-    // GET: buscar por ROL (exacto) -> /api/usuarios/usuarios/buscar/rol/{rol}
-    @GetMapping("/usuarios/buscarR/{rol}")
-    public ResponseEntity<Page<UsuarioDTO>> buscarPorRol(
-            @PathVariable String rol,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "rol,asc") String sort
-    ) {
-        Pageable pageable = buildPageable(page, size, sort);
-        return ResponseEntity.ok(usuarioService.buscarPorRol(rol, pageable));
-    }
-
-    // POST: crear -> /api/usuarios/usuarios
-    @PostMapping("/crearUsuarios")
-    public ResponseEntity<?> crear(@Valid @RequestBody UsuarioDTO dto, BindingResult result) {
-        if (result.hasErrors()) {
-            Map<String, String> fieldErrors = new HashMap<>();
-            result.getFieldErrors().forEach(err -> fieldErrors.put(err.getField(), err.getDefaultMessage()));
-            return ResponseEntity.badRequest().body(Map.of(
-                    "status", "Insercion Incorrecta",
-                    "errorType", "VALIDATION_ERROR",
-                    "message", "Datos para insercion invalidos",
-                    "errors", fieldErrors
-            ));
+        if (search != null && !search.isBlank()) {
+            switch (searchType) {
+                case "nombre":
+                    resultPage = usuarioService.buscarPorNombre(search, pageable);
+                    break;
+                case "correo":
+                    resultPage = usuarioService.buscarPorCorreo(search, pageable);
+                    break;
+                case "rol":
+                    resultPage = usuarioService.buscarPorRol(search, pageable);
+                    break;
+                default:
+                    resultPage = usuarioService.listar(pageable);
+                    break;
+            }
+        } else {
+            resultPage = usuarioService.listar(pageable);
         }
+        return ResponseEntity.ok(resultPage);
+    }
+
+    // POST: crear un nuevo usuario
+    @PostMapping
+    public ResponseEntity<?> crear(
+            @RequestParam String nombreUsuario,
+            @RequestParam String correo,
+            @RequestParam String rol,
+            @RequestParam String password,
+            @RequestParam(value = "image", required = false) MultipartFile file
+    ) {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
-                    "status", "success",
-                    "data", usuarioService.crear(dto)
-            ));
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.badRequest().body(Map.of(
-                    "status", "Insercion Incorrecta",
-                    "errorType", "VALIDATION_ERROR",
-                    "message", ex.getMessage()
-            ));
+            UsuarioDTO dto = new UsuarioDTO();
+            dto.setNombreUsuario(nombreUsuario);
+            dto.setCorreo(correo);
+            dto.setRol(rol);
+            dto.setPassword(password);
+
+            if (file != null && !file.isEmpty()) {
+                String imageUrl = cservice.uploadImage(file, "Usuarios");
+                dto.setFoto_Url(imageUrl);
+            }
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.crear(dto));
         } catch (Exception e) {
             log.error("Error al crear usuario", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+            return ResponseEntity.internalServerError().body(Map.of(
                     "status", "error",
-                    "message", "Error al crear el usuario",
-                    "detail", e.getMessage()
+                    "message", "Error interno al crear el usuario"
             ));
         }
     }
 
-    // PUT: actualizar por ID -> /api/usuarios/usuarios/{id}
-    @PutMapping("/actualizarUsuarios/{id}")
+    // PUT: actualizar un usuario por ID
+    @PutMapping("/{id}")
     public ResponseEntity<?> actualizarPorId(
             @PathVariable Long id,
-            @Valid @RequestBody UsuarioDTO dto,
-            BindingResult result
+            @RequestParam String nombreUsuario,
+            @RequestParam String correo,
+            @RequestParam String rol,
+            @RequestParam(required = false) String password,
+            @RequestParam(value = "Foto_Url", required = false) String fotoUrl,
+            @RequestParam(value = "image", required = false) MultipartFile file
     ) {
-        if (result.hasErrors()) {
-            Map<String, String> fieldErrors = new HashMap<>();
-            result.getFieldErrors().forEach(err -> fieldErrors.put(err.getField(), err.getDefaultMessage()));
-            return ResponseEntity.badRequest().body(fieldErrors);
-        }
         try {
+            UsuarioDTO dto = new UsuarioDTO();
+            dto.setIdUsuario(id);
+            dto.setNombreUsuario(nombreUsuario);
+            dto.setCorreo(correo);
+            dto.setRol(rol);
+
+            if (password != null && !password.isBlank()) {
+                dto.setPassword(password);
+            }
+
+            if (file != null && !file.isEmpty()) {
+                String imageUrl = cservice.uploadImage(file, "Usuarios");
+                dto.setFoto_Url(imageUrl);
+            } else if (fotoUrl != null && !fotoUrl.isBlank()) {
+                dto.setFoto_Url(fotoUrl);
+            }
+
             return ResponseEntity.ok(usuarioService.actualizarPorId(id, dto));
         } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("error", "Usuario no encontrado", "mensaje", e.getMessage()));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(Map.of(
-                    "error", "Validación",
-                    "mensaje", e.getMessage()
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                    "status", "error",
+                    "message", e.getMessage()
             ));
+        } catch (IllegalArgumentException e) {
+            return handleBusinessError(e.getMessage());
         } catch (Exception e) {
             log.error("Error al actualizar usuario {}: {}", id, e.getMessage());
-            return ResponseEntity.internalServerError()
-                    .body(Map.of("error", "Error al actualizar usuario", "detalle", e.getMessage()));
+            return ResponseEntity.internalServerError().body(Map.of(
+                    "status", "error",
+                    "message", "Error interno al actualizar el usuario"
+            ));
         }
     }
 
-    // DELETE: eliminar por ID -> /api/usuarios/usuarios/{id}
-    @DeleteMapping("/eliminarUsuarios/{id}")
+    // DELETE: eliminar un usuario por ID
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarPorId(@PathVariable Long id) {
         try {
             boolean eliminado = usuarioService.eliminarPorId(id);
             if (!eliminado) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("error", "Usuario no encontrado"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                        "status", "error",
+                        "message", "Usuario no encontrado"
+                ));
             }
-            return ResponseEntity.ok(Map.of("mensaje", "Usuario eliminado correctamente"));
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "message", "Usuario eliminado correctamente"
+            ));
         } catch (Exception e) {
             log.error("Error al eliminar usuario {}: {}", id, e.getMessage());
-            return ResponseEntity.internalServerError()
-                    .body(Map.of("error", "Error al eliminar usuario", "detalle", e.getMessage()));
+            return ResponseEntity.internalServerError().body(Map.of(
+                    "status", "error",
+                    "message", "Error interno al eliminar el usuario"
+            ));
         }
     }
 }

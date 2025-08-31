@@ -1,13 +1,15 @@
-package NEXTTRAVELEXPO2025.NEXTTRAVEL.Controllers.Config.Cloudinary;
+package NEXTTRAVELEXPO2025.NEXTTRAVEL.Cloudinary;
 
 import com.cloudinary.Cloudinary;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.HashMap;
 import java.util.Map;
 @Configuration
+@CrossOrigin
 public class CloudinaryConfig {
     //Variable para almacenar las credenciales de Cloudinary
 
