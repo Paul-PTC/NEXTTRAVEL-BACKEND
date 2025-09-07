@@ -16,7 +16,7 @@ public class VwEmpleado {
     @Column(name = "DUI", length = 10, nullable = false)
     private String dui;
 
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRECOMPLETO")
     private String nombre;
 
     @Column(name = "CORREO")

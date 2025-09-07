@@ -25,4 +25,7 @@ public class Cliente {
 
     @Column(name = "FECHAREGISTRO")
     private LocalDateTime fechaRegistro;
+
+    @Column(name = "PUNTOS_ACTUALES")
+    private Long puntosactuales;
 }

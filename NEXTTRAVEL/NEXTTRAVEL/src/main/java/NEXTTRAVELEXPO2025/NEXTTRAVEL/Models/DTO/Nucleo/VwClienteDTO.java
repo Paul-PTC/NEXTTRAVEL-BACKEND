@@ -12,5 +12,6 @@ public class VwClienteDTO {
     private String direccion;
     private LocalDateTime fechaRegistro;
     private Integer puntosActuales;
+    private Long idUsuario;
 }
 

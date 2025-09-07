@@ -108,10 +108,6 @@ public class UsuarioController {
             dto.setRol(rol);
             dto.setPassword(password);
 
-            if (file != null && !file.isEmpty()) {
-                String imageUrl = cservice.uploadImage(file, "Usuarios");
-                dto.setFoto_Url(imageUrl);
-            }
 
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.crear(dto));
         } catch (Exception e) {
@@ -143,13 +139,6 @@ public class UsuarioController {
 
             if (password != null && !password.isBlank()) {
                 dto.setPassword(password);
-            }
-
-            if (file != null && !file.isEmpty()) {
-                String imageUrl = cservice.uploadImage(file, "Usuarios");
-                dto.setFoto_Url(imageUrl);
-            } else if (fotoUrl != null && !fotoUrl.isBlank()) {
-                dto.setFoto_Url(fotoUrl);
             }
 
             return ResponseEntity.ok(usuarioService.actualizarPorId(id, dto));

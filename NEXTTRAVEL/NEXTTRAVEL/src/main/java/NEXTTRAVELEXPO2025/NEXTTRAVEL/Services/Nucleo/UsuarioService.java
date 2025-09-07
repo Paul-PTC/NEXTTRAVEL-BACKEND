@@ -26,7 +26,7 @@ public class UsuarioService {
                 .nombreUsuario(u.getNombreUsuario())
                 .correo(u.getCorreo())
                 .rol(u.getRol())
-                .Foto_Url(u.getFoto_Url()) // CORREGIDO: Usando fotUrl
+
                 .build();
     }
 
@@ -71,7 +71,6 @@ public class UsuarioService {
                 .rol(dto.getRol())
                 .idUsuario(dto.getIdUsuario())
                 .contraseniaHash(passwordEncoder.encode(dto.getPassword()))
-                .Foto_Url(dto.getFoto_Url()) // CORREGIDO: Usando fotUrl
                 .build();
 
         Usuario guardado = repo.save(u);
@@ -102,9 +101,6 @@ public class UsuarioService {
             u.setRol(dto.getRol());
         }
 
-        if (notBlank(dto.getFoto_Url())) { // CORREGIDO: Usando fotUrl
-            u.setFoto_Url(dto.getFoto_Url());
-        }
 
         if (notBlank(dto.getPassword())) {
             u.setContraseniaHash(passwordEncoder.encode(dto.getPassword()));

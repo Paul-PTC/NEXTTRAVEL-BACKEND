@@ -33,5 +33,4 @@ public class UsuarioDTO {
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
 
-    private String Foto_Url;
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -29,30 +30,38 @@ public class ClienteService {
                 .telefono(c.getTelefono())
                 .direccion(c.getDireccion())
                 .fechaRegistro(c.getFechaRegistro())
+                .puntosactuales(c.getPuntosactuales())
                 .build();
     }
 
     private void apply(Cliente c, ClienteDTO dto) {
         if (dto.getTelefono() != null) c.setTelefono(dto.getTelefono());
         if (dto.getDireccion() != null) c.setDireccion(dto.getDireccion());
-        if (dto.getFechaRegistro() != null) c.setFechaRegistro(dto.getFechaRegistro());
+        if (dto.getPuntosactuales() != null) c.setPuntosactuales(dto.getPuntosactuales());
     }
 
     @Transactional
     public ClienteDTO crear(@Valid ClienteDTO dto) {
-        Usuario u = usuarioRepo.findById(dto.getIdUsuario())
-                .orElseThrow(() -> new EntityNotFoundException("No existe Usuario con id: " + dto.getIdUsuario()));
+        Usuario u = null;
+        if (dto.getIdUsuario() != null) {
+            u = usuarioRepo.findById(dto.getIdUsuario())
+                    .orElseThrow(() -> new EntityNotFoundException("No existe Usuario con id: " + dto.getIdUsuario()));
+        }
+
+        if (clienteRepo.existsById(dto.getDui())) {
+            throw new IllegalArgumentException("Ya existe un cliente con el DUI: " + dto.getDui());
+        }
 
         Cliente c = Cliente.builder()
                 .dui(dto.getDui())
                 .usuario(u)
                 .telefono(dto.getTelefono())
                 .direccion(dto.getDireccion())
-                .fechaRegistro(dto.getFechaRegistro() != null ? dto.getFechaRegistro() : LocalDateTime.now())
+                .puntosactuales(dto.getPuntosactuales() != null ? dto.getPuntosactuales() : 0)
+                .fechaRegistro(LocalDateTime.now())
                 .build();
 
         Cliente guardado = clienteRepo.save(c);
-        log.info("Cliente creado DUI={} (usuario={})", guardado.getDui(), u.getIdUsuario());
         return toDTO(guardado);
     }
 
@@ -61,16 +70,22 @@ public class ClienteService {
         Cliente c = clienteRepo.findById(dui)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró Cliente con DUI: " + dui));
 
-        if (dto.getIdUsuario() != null && (c.getUsuario() == null ||
-                !dto.getIdUsuario().equals(c.getUsuario().getIdUsuario()))) {
+        if (dto.getIdUsuario() != null) {
             Usuario u = usuarioRepo.findById(dto.getIdUsuario())
                     .orElseThrow(() -> new EntityNotFoundException("No existe Usuario con id: " + dto.getIdUsuario()));
             c.setUsuario(u);
+        } else {
+            c.setUsuario(null);
         }
 
-        apply(c, dto);
+        if (dto.getPuntosactuales() != null) {
+            c.setPuntosactuales(dto.getPuntosactuales());
+        }
+
+        if (dto.getTelefono() != null) c.setTelefono(dto.getTelefono());
+        if (dto.getDireccion() != null) c.setDireccion(dto.getDireccion());
+
         Cliente actualizado = clienteRepo.save(c);
-        log.info("Cliente actualizado DUI={}", dui);
         return toDTO(actualizado);
     }
 
@@ -78,7 +93,6 @@ public class ClienteService {
     public boolean eliminarPorDui(String dui) {
         if (!clienteRepo.existsById(dui)) return false;
         clienteRepo.deleteById(dui);
-        log.info("Cliente eliminado DUI={}", dui);
         return true;
     }
 }

@@ -20,11 +20,12 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/empleados")
+@CrossOrigin(origins = "http://localhost")
 @RequiredArgsConstructor
 public class EmpleadoController {
 
-    private final EmpleadoService empService;     // tabla
-    private final VwEmpleadoService vwService;    // vista
+    private final EmpleadoService empService;
+    private final VwEmpleadoService vwService;
 
     private Pageable buildPageable(int page, int size, String sort) {
         String[] s = sort.split(",");
@@ -34,7 +35,7 @@ public class EmpleadoController {
     }
 
     // ===== GET (vista) =====
-    @GetMapping("/empleados/listar")
+    @GetMapping
     public ResponseEntity<Page<VwEmpleadoDTO>> listar(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -43,8 +44,7 @@ public class EmpleadoController {
         return ResponseEntity.ok(vwService.listar(buildPageable(page, size, sort)));
     }
 
-    // Búsquedas parciales con {q}
-    @GetMapping("/empleados/buscar/{q}")
+    @GetMapping("/buscar/{q}")
     public ResponseEntity<Page<VwEmpleadoDTO>> buscarPorNombre(
             @PathVariable String q,
             @RequestParam(defaultValue = "0") int page,
@@ -54,7 +54,8 @@ public class EmpleadoController {
         return ResponseEntity.ok(vwService.buscarPorNombre(q, buildPageable(page, size, sort)));
     }
 
-    @GetMapping("/empleados/buscar/correo/{q}")
+
+    @GetMapping("/buscar/correo/{q}")
     public ResponseEntity<Page<VwEmpleadoDTO>> buscarPorCorreo(
             @PathVariable String q,
             @RequestParam(defaultValue = "0") int page,
@@ -64,7 +65,7 @@ public class EmpleadoController {
         return ResponseEntity.ok(vwService.buscarPorCorreo(q, buildPageable(page, size, sort)));
     }
 
-    @GetMapping("/empleados/buscar/telefono/{q}")
+    @GetMapping("/buscar/telefono/{q}")
     public ResponseEntity<Page<VwEmpleadoDTO>> buscarPorTelefono(
             @PathVariable String q,
             @RequestParam(defaultValue = "0") int page,
@@ -74,7 +75,7 @@ public class EmpleadoController {
         return ResponseEntity.ok(vwService.buscarPorTelefono(q, buildPageable(page, size, sort)));
     }
 
-    @GetMapping("/empleados/buscar/direccion/{q}")
+    @GetMapping("/buscar/direccion/{q}")
     public ResponseEntity<Page<VwEmpleadoDTO>> buscarPorDireccion(
             @PathVariable String q,
             @RequestParam(defaultValue = "0") int page,
@@ -84,7 +85,7 @@ public class EmpleadoController {
         return ResponseEntity.ok(vwService.buscarPorDireccion(q, buildPageable(page, size, sort)));
     }
 
-    @GetMapping("/empleados/buscar/rango/{q}")
+    @GetMapping("/buscar/rango/{q}")
     public ResponseEntity<Page<VwEmpleadoDTO>> buscarPorRango(
             @PathVariable String q,
             @RequestParam(defaultValue = "0") int page,
@@ -94,7 +95,7 @@ public class EmpleadoController {
         return ResponseEntity.ok(vwService.buscarPorRango(q, buildPageable(page, size, sort)));
     }
 
-    @GetMapping("/empleados/buscar/salario")
+    @GetMapping("/buscar/salario")
     public ResponseEntity<Page<VwEmpleadoDTO>> buscarPorSalario(
             @RequestParam(required = false) BigDecimal min,
             @RequestParam(required = false) BigDecimal max,
@@ -106,7 +107,7 @@ public class EmpleadoController {
     }
 
     // ===== POST/PUT/DELETE (tabla) =====
-    @PostMapping("/empleados")
+    @PostMapping
     public ResponseEntity<?> crear(@Valid @RequestBody EmpleadoDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> fieldErrors = new HashMap<>();
@@ -139,7 +140,7 @@ public class EmpleadoController {
         }
     }
 
-    @PutMapping("/empleados/{dui}")
+    @PutMapping("/{dui}")
     public ResponseEntity<?> actualizar(@PathVariable String dui,
                                         @Valid @RequestBody EmpleadoDTO dto,
                                         BindingResult result) {
@@ -160,7 +161,7 @@ public class EmpleadoController {
         }
     }
 
-    @DeleteMapping("/empleados/{dui}")
+    @DeleteMapping("/{dui}")
     public ResponseEntity<?> eliminar(@PathVariable String dui) {
         try {
             boolean eliminado = empService.eliminarPorDui(dui);

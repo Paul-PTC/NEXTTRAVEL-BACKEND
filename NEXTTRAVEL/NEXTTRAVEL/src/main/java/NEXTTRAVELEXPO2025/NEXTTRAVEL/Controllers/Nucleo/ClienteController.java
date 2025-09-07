@@ -22,10 +22,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/clientes")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost")
 public class ClienteController {
 
-    private final ClienteService clienteService;   // tabla
-    private final VwClienteService vwService;      // vista
+    private final ClienteService clienteService;
+    private final VwClienteService vwService;
 
     private Pageable buildPageable(int page, int size, String sort) {
         String[] s = sort.split(",");
@@ -34,8 +35,7 @@ public class ClienteController {
         return PageRequest.of(page, size, Sort.by(new Sort.Order(dir, s[0])));
     }
 
-    // ===== GET (vista) =====
-    @GetMapping("/clientes/listar")
+    @GetMapping
     public ResponseEntity<Page<VwClienteDTO>> listar(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -44,8 +44,7 @@ public class ClienteController {
         return ResponseEntity.ok(vwService.listar(buildPageable(page, size, sort)));
     }
 
-    // Búsquedas parciales con {} (vista)
-    @GetMapping("/clientes/buscar/{q}")
+    @GetMapping("/buscar/{q}")
     public ResponseEntity<Page<VwClienteDTO>> buscarPorNombre(
             @PathVariable String q,
             @RequestParam(defaultValue = "0") int page,
@@ -55,7 +54,19 @@ public class ClienteController {
         return ResponseEntity.ok(vwService.buscarPorNombre(q, buildPageable(page, size, sort)));
     }
 
-    @GetMapping("/clientes/buscar/correo/{q}")
+
+    @GetMapping("/buscar/dui/{q}")
+    public ResponseEntity<?> buscarPorDui(@PathVariable String q) {
+        try {
+            VwClienteDTO cliente = vwService.buscarPorDui(q);
+            return ResponseEntity.ok(cliente);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "Cliente no encontrado", "mensaje", e.getMessage()));
+        }
+    }
+
+    @GetMapping("/buscar/correo/{q}")
     public ResponseEntity<Page<VwClienteDTO>> buscarPorCorreo(
             @PathVariable String q, @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -64,7 +75,7 @@ public class ClienteController {
         return ResponseEntity.ok(vwService.buscarPorCorreo(q, buildPageable(page, size, sort)));
     }
 
-    @GetMapping("/clientes/buscar/telefono/{q}")
+    @GetMapping("/buscar/telefono/{q}")
     public ResponseEntity<Page<VwClienteDTO>> buscarPorTelefono(
             @PathVariable String q, @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -73,7 +84,7 @@ public class ClienteController {
         return ResponseEntity.ok(vwService.buscarPorTelefono(q, buildPageable(page, size, sort)));
     }
 
-    @GetMapping("/clientes/buscar/direccion/{q}")
+    @GetMapping("/buscar/direccion/{q}")
     public ResponseEntity<Page<VwClienteDTO>> buscarPorDireccion(
             @PathVariable String q, @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -82,8 +93,7 @@ public class ClienteController {
         return ResponseEntity.ok(vwService.buscarPorDireccion(q, buildPageable(page, size, sort)));
     }
 
-    // Rango de puntos: /api/clientes/clientes/buscar/puntos?min=100&max=500
-    @GetMapping("/clientes/buscar/puntos")
+    @GetMapping("/buscar/puntos")
     public ResponseEntity<Page<VwClienteDTO>> buscarPorPuntos(
             @RequestParam(required = false) Integer min,
             @RequestParam(required = false) Integer max,
@@ -94,8 +104,7 @@ public class ClienteController {
         return ResponseEntity.ok(vwService.buscarPorPuntos(min, max, buildPageable(page, size, sort)));
     }
 
-    // Rango de fechas (ISO-8601): /api/clientes/clientes/buscar/fecha?desde=2025-01-01T00:00:00&hasta=2025-12-31T23:59:59
-    @GetMapping("/clientes/buscar/fecha")
+    @GetMapping("/buscar/fecha")
     public ResponseEntity<?> buscarPorFecha(
             @RequestParam String desde,
             @RequestParam String hasta,
@@ -115,8 +124,7 @@ public class ClienteController {
         }
     }
 
-    // ===== POST/PUT/DELETE (tabla) =====
-    @PostMapping("/clientes")
+    @PostMapping
     public ResponseEntity<?> crear(@Valid @RequestBody ClienteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> field = new HashMap<>();
@@ -140,7 +148,6 @@ public class ClienteController {
                     "message", ex.getMessage()
             ));
         } catch (Exception e) {
-            log.error("Error al crear cliente", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
                     "status", "error",
                     "message", "Error al crear el cliente",
@@ -149,7 +156,7 @@ public class ClienteController {
         }
     }
 
-    @PutMapping("/clientes/{dui}")
+    @PutMapping("/{dui}")
     public ResponseEntity<?> actualizar(@PathVariable String dui,
                                         @Valid @RequestBody ClienteDTO dto,
                                         BindingResult result) {
@@ -164,13 +171,12 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("error", "Cliente no encontrado", "mensaje", e.getMessage()));
         } catch (Exception e) {
-            log.error("Error al actualizar cliente {}: {}", dui, e.getMessage());
             return ResponseEntity.internalServerError()
                     .body(Map.of("error", "Error al actualizar cliente", "detalle", e.getMessage()));
         }
     }
 
-    @DeleteMapping("/clientes/{dui}")
+    @DeleteMapping("/{dui}")
     public ResponseEntity<?> eliminar(@PathVariable String dui) {
         try {
             boolean eliminado = clienteService.eliminarPorDui(dui);
@@ -180,7 +186,6 @@ public class ClienteController {
             }
             return ResponseEntity.ok(Map.of("mensaje", "Cliente eliminado correctamente"));
         } catch (Exception e) {
-            log.error("Error al eliminar cliente {}: {}", dui, e.getMessage());
             return ResponseEntity.internalServerError()
                     .body(Map.of("error", "Error al eliminar cliente", "detalle", e.getMessage()));
         }

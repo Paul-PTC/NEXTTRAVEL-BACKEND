@@ -21,4 +21,6 @@ public class ClienteDTO {
 
     // si viene null al crear, se setea ahora()
     private LocalDateTime fechaRegistro;
+
+    private Long puntosactuales;
 }

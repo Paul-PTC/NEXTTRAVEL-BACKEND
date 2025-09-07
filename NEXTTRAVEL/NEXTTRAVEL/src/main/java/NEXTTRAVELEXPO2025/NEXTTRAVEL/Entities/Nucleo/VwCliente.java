@@ -6,7 +6,7 @@ import org.hibernate.annotations.Immutable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "VW_CLIENTES") // si usas esquema con #, agrega: schema="\"C#NEXTTRAVEL\""
+@Table(name = "VW_CLIENTE")
 @Immutable
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class VwCliente {
@@ -15,7 +15,7 @@ public class VwCliente {
     @Column(name = "DUI", length = 10, nullable = false)
     private String dui;
 
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBREUSUARIO")
     private String nombre;
 
     @Column(name = "CORREO")
@@ -32,4 +32,8 @@ public class VwCliente {
 
     @Column(name = "PUNTOS_ACTUALES")
     private Integer puntosActuales; // NUMBER -> Integer
+
+    @Column(name = "IDUSUARIO")
+    private Long idUsuario;
+
 }
