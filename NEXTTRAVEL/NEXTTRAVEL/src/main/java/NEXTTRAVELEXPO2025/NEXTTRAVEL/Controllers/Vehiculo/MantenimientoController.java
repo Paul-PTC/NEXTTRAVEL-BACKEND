@@ -1,8 +1,9 @@
 package NEXTTRAVELEXPO2025.NEXTTRAVEL.Controllers.Vehiculo;
 
-import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.MantenimientoDTO;
-import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.VwMantenimientoDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.*;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Vehiculo.MantenimientoService;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Vehiculo.TipoMantenimientoService;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Vehiculo.VehiculoService;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Vehiculo.VwMantenimientoService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = {"http://127.0.0.1:5500","http://localhost:5500","http://127.0.0.1:5502","http://localhost:5502"})
 @Slf4j
 @RestController
 @RequestMapping("/api/mantenimientos")
@@ -26,12 +29,32 @@ public class MantenimientoController {
 
     private final MantenimientoService service;     // tabla
     private final VwMantenimientoService vwService; // vista
+    private final VehiculoService vehiculoService;
+    private final TipoMantenimientoService tipoMantenimientoService;
+
 
     private Pageable buildPageable(int page, int size, String sort) {
         String[] s = sort.split(",");
         Sort.Direction dir = (s.length > 1 && "desc".equalsIgnoreCase(s[1]))
                 ? Sort.Direction.DESC : Sort.Direction.ASC;
         return PageRequest.of(page, size, Sort.by(new Sort.Order(dir, s[0])));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ListarTipoMantenimientoDTO>> listarTipos() {
+        return ResponseEntity.ok(service.listarTipos());
+    }
+
+    // GET /api/lookups/vehiculos -> [{ idVehiculo, placa }]
+    @GetMapping("/vehiculos")
+    public ResponseEntity<List<VehiculoPlacaDTO>> listarVehiculosMin() {
+        return ResponseEntity.ok(vehiculoService.listarSoloPlacas());
+    }
+
+    // Tipos de mantenimiento (id + nombreTipo) → para combo de tipos
+    @GetMapping("/tipos-mantenimiento")
+    public ResponseEntity<List<TipoMantenimientoMinDTO>> listarTiposMin() {
+        return ResponseEntity.ok(tipoMantenimientoService.listarSoloTipos()); // ✅ usa el service correcto
     }
 
     // ===== GET (vista) =====
@@ -150,7 +173,7 @@ public class MantenimientoController {
     }
 
     // Actualizar -> /api/mantenimientos/mantenimientos/{id}
-    @PutMapping("/mantenimientos/{id}")
+    @PutMapping("/mantenimientosU/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
                                         @Valid @RequestBody MantenimientoDTO dto,
                                         BindingResult result) {

@@ -2,6 +2,7 @@ package NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Vehiculo;
 
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Vehiculo.TipoMantenimiento;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.TipoMantenimientoDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.TipoMantenimientoMinDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Vehiculo.TipoMantenimientoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -12,6 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -26,6 +30,15 @@ public class TipoMantenimientoService {
                 .nombreTipo(e.getNombreTipo())
                 .descripcion(e.getDescripcion())
                 .build();
+    }
+
+    public List<TipoMantenimientoMinDTO> listarSoloTipos() {
+        return repo.findAll().stream()
+                .map(t -> new TipoMantenimientoMinDTO(
+                        t.getIdTipoMantenimiento(),
+                        t.getNombreTipo()
+                ))
+                .collect(Collectors.toList());
     }
 
     // ===== Listado / Búsquedas =====

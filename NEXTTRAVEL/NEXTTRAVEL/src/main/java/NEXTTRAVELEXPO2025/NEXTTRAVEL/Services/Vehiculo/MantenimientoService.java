@@ -3,7 +3,9 @@ package NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Vehiculo;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Vehiculo.Mantenimiento;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Vehiculo.TipoMantenimiento;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Vehiculo.Vehiculo;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.ListarTipoMantenimientoDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.MantenimientoDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.TipoMantenimientoDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Vehiculo.MantenimientoRepository;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Vehiculo.TipoMantenimientoRepository;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Vehiculo.VehiculoRepository;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -24,6 +27,18 @@ public class MantenimientoService {
     private final MantenimientoRepository repo;
     private final VehiculoRepository vehiculoRepo;
     private final TipoMantenimientoRepository tipoRepo;
+
+
+    // Listar solo tipos de mantenimiento
+    public List<ListarTipoMantenimientoDTO> listarTipos() {
+        return tipoRepo.findAll()
+                .stream()
+                .map(tm -> new ListarTipoMantenimientoDTO(
+                        tm.getIdTipoMantenimiento(),
+                        tm.getNombreTipo()
+                ))
+                .toList();
+    }
 
     @Transactional
     public Long crear(@Valid MantenimientoDTO dto) {

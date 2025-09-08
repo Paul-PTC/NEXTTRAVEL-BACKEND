@@ -1,7 +1,10 @@
 package NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Vehiculo;
 
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Vehiculo.Vehiculo;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.TipoMantenimientoMinDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.VehiculoDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Vehiculo.VehiculoPlacaDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Vehiculo.TipoMantenimientoRepository;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Vehiculo.VehiculoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -12,12 +15,17 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class VehiculoService {
 
     private final VehiculoRepository repo;
+    private final TipoMantenimientoRepository Trepo;
+
 
     private VehiculoDTO toDTO(Vehiculo e) {
         return VehiculoDTO.builder()
@@ -29,6 +37,18 @@ public class VehiculoService {
                 .estado(e.getEstado())
                 .build();
     }
+
+    // Listar solo id + placa
+    public List<VehiculoPlacaDTO> listarSoloPlacas() {
+        return repo.findAll().stream()
+                .map(v -> new VehiculoPlacaDTO(
+                        v.getIdVehiculo(),
+                        v.getPlaca()
+                ))
+                .collect(Collectors.toList());
+    }
+
+
 
     // ===== Listado / Búsquedas =====
     public Page<VehiculoDTO> listar(Pageable p) {

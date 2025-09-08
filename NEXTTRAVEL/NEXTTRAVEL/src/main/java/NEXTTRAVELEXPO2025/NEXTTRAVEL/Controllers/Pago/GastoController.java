@@ -1,6 +1,7 @@
 package NEXTTRAVELEXPO2025.NEXTTRAVEL.Controllers.Pago;
 
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Pago.GastoDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Pago.GastoTipoDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Pago.VwGastoDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Pago.GastoService;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Pago.VwGastoService;
@@ -17,10 +18,21 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @RestController
+@CrossOrigin(
+        origins = {
+                "http://127.0.0.1:5502",
+                "http://localhost:5502",
+                "http://127.0.0.1:5500",
+                "http://localhost:5500",
+                "http://localhost:5173",
+                "http://127.0.0.1:5173"
+        }
+)
 @RequestMapping("/api/gastos")
 @RequiredArgsConstructor
 public class GastoController {
@@ -35,6 +47,11 @@ public class GastoController {
         return PageRequest.of(page, size, Sort.by(new Sort.Order(dir, s[0])));
     }
 
+    // listar solo tipo de gasto
+    @GetMapping("/tipos")
+    public ResponseEntity<List<GastoTipoDTO>> listarTipos() {
+        return ResponseEntity.ok(service.listarTipos());
+    }
     // ===== GET (vista) =====
     // Listar -> /api/gastos/gastos/listar
     @GetMapping("/gastos/listar")
@@ -105,7 +122,7 @@ public class GastoController {
 
     // ===== POST/PUT/DELETE (tabla) =====
     // Crear -> /api/gastos/gastos
-    @PostMapping("/gastos")
+    @PostMapping("/gastosI")
     public ResponseEntity<?> crear(@Valid @RequestBody GastoDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> field = new HashMap<>();
@@ -146,7 +163,7 @@ public class GastoController {
     }
 
     // Actualizar -> /api/gastos/gastos/{id}
-    @PutMapping("/gastos/{id}")
+    @PutMapping("/gastosU/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
                                         @Valid @RequestBody GastoDTO dto,
                                         BindingResult result) {

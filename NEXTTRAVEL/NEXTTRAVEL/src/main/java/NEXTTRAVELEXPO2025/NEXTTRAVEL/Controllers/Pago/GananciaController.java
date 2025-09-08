@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
+@CrossOrigin(origins = {"http://127.0.0.1:5502", "http://localhost:5502"})
 @RestController
 @RequestMapping("/api/ganancias")
 @RequiredArgsConstructor
@@ -44,6 +45,7 @@ public class GananciaController {
     ) {
         return ResponseEntity.ok(vwService.listar(buildPageable(page, size, sort)));
     }
+
 
     // Búsquedas parciales con {}
     @GetMapping("/ganancias/buscar/cliente/{q}")
@@ -122,7 +124,7 @@ public class GananciaController {
     }
 
     // ===== POST/PUT/DELETE (tabla) =====
-    @PostMapping("/ganancias")
+    @PostMapping("/gananciasI")
     public ResponseEntity<?> crear(@Valid @RequestBody GananciaDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> field = new HashMap<>();

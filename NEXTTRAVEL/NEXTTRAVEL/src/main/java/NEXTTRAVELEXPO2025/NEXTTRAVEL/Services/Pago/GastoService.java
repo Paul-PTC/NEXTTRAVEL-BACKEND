@@ -3,6 +3,7 @@ package NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Pago;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Pago.Gasto;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Pago.TipoGasto;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Pago.GastoDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Pago.GastoTipoDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Pago.GastoRepository;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Pago.TipoGastoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -25,6 +28,16 @@ public class GastoService {
 
     private void validateMonto(BigDecimal v) {
         if (v == null || v.signum() < 0) throw new IllegalArgumentException("monto debe ser >= 0");
+    }
+
+    // listar solo tipo de gasto
+    public List<GastoTipoDTO> listarTipos() {
+        return repo.findAll().stream()
+                .map(g -> new GastoTipoDTO(
+                        g.getIdGasto(),
+                        g.getTipoGasto() != null ? g.getTipoGasto().getNombreTipo() : null
+                ))
+                .collect(Collectors.toList());
     }
 
     @Transactional
