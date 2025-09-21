@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class DescuentoAplicadoService {
+public class  DescuentoAplicadoService {
 
     private final DescuentoAplicadoRepository repo;
     private final ReservaRepository reservaRepo;

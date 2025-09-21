@@ -24,8 +24,6 @@ import java.util.stream.Collectors;
 public class VehiculoService {
 
     private final VehiculoRepository repo;
-    private final TipoMantenimientoRepository Trepo;
-
 
     private VehiculoDTO toDTO(Vehiculo e) {
         return VehiculoDTO.builder()
@@ -38,17 +36,15 @@ public class VehiculoService {
                 .build();
     }
 
-    // Listar solo id + placa
+    // ===== Listar solo id + placa =====
     public List<VehiculoPlacaDTO> listarSoloPlacas() {
         return repo.findAll().stream()
                 .map(v -> new VehiculoPlacaDTO(
                         v.getIdVehiculo(),
                         v.getPlaca()
                 ))
-                .collect(Collectors.toList());
+                .toList();
     }
-
-
 
     // ===== Listado / Búsquedas =====
     public Page<VehiculoDTO> listar(Pageable p) {
@@ -84,6 +80,16 @@ public class VehiculoService {
     // ===== Crear =====
     @Transactional
     public Long crear(@Valid VehiculoDTO dto) {
+        if (dto.getPlaca() == null || dto.getPlaca().isBlank())
+            throw new IllegalArgumentException("La placa es obligatoria.");
+        if (dto.getModelo() == null || dto.getModelo().isBlank())
+            throw new IllegalArgumentException("El modelo es obligatorio.");
+        if (dto.getCapacidad() == null || dto.getCapacidad() < 1)
+            throw new IllegalArgumentException("La capacidad debe ser >= 1.");
+        if (dto.getAnioFabricacion() == null ||
+                dto.getAnioFabricacion() < 1900 || dto.getAnioFabricacion() > 2100)
+            throw new IllegalArgumentException("El año de fabricación debe estar entre 1900 y 2100.");
+
         String placa = dto.getPlaca().trim();
         if (repo.existsByPlacaIgnoreCase(placa))
             throw new IllegalArgumentException("Ya existe un vehículo con esa placa.");
@@ -94,55 +100,82 @@ public class VehiculoService {
                     .modelo(dto.getModelo().trim())
                     .capacidad(dto.getCapacidad())
                     .anioFabricacion(dto.getAnioFabricacion())
-                    .estado(dto.getEstado()) // si es null, DB usará 'Activo'
+                    .estado(dto.getEstado() != null ? dto.getEstado() : "Activo")
                     .build();
+
             Vehiculo g = repo.save(e);
             log.info("Vehiculo creado id={} placa={}", g.getIdVehiculo(), g.getPlaca());
             return g.getIdVehiculo();
         } catch (DataIntegrityViolationException ex) {
-            throw new IllegalArgumentException("Violación de unicidad/validación en la base de datos.", ex);
+            throw new IllegalArgumentException("Error de integridad al crear vehículo: "
+                    + ex.getMostSpecificCause().getMessage(), ex);
         }
     }
 
     // ===== Actualizar por ID =====
     @Transactional
     public void actualizar(Long id, @Valid VehiculoDTO dto) {
+        if (id == null) throw new IllegalArgumentException("El id es obligatorio para actualizar.");
+
         Vehiculo e = repo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró Vehiculo con id: " + id));
 
         if (dto.getPlaca() != null) {
             String nueva = dto.getPlaca().trim();
+            if (nueva.isBlank())
+                throw new IllegalArgumentException("La placa no puede estar vacía.");
             if (!nueva.equalsIgnoreCase(e.getPlaca()) && repo.existsByPlacaIgnoreCase(nueva)) {
                 throw new IllegalArgumentException("Ya existe un vehículo con esa placa.");
             }
             e.setPlaca(nueva);
         }
-        if (dto.getModelo() != null) e.setModelo(dto.getModelo().trim());
+
+        if (dto.getModelo() != null) {
+            String nuevoModelo = dto.getModelo().trim();
+            if (nuevoModelo.isBlank())
+                throw new IllegalArgumentException("El modelo no puede estar vacío.");
+            e.setModelo(nuevoModelo);
+        }
+
         if (dto.getCapacidad() != null) {
-            if (dto.getCapacidad() < 1) throw new IllegalArgumentException("capacidad debe ser >= 1");
+            if (dto.getCapacidad() < 1)
+                throw new IllegalArgumentException("capacidad debe ser >= 1.");
             e.setCapacidad(dto.getCapacidad());
         }
+
         if (dto.getAnioFabricacion() != null) {
             int y = dto.getAnioFabricacion();
-            if (y < 1900 || y > 2100) throw new IllegalArgumentException("anioFabricacion fuera de rango (1900..2100)");
+            if (y < 1900 || y > 2100)
+                throw new IllegalArgumentException("anioFabricacion fuera de rango (1900..2100).");
             e.setAnioFabricacion(y);
         }
-        if (dto.getEstado() != null) e.setEstado(dto.getEstado());
+
+        if (dto.getEstado() != null) {
+            e.setEstado(dto.getEstado());
+        }
 
         try {
             repo.save(e);
             log.info("Vehiculo actualizado id={}", id);
         } catch (DataIntegrityViolationException ex) {
-            throw new IllegalArgumentException("Violación de unicidad/validación en la base de datos.", ex);
+            throw new IllegalArgumentException("Error de integridad al actualizar vehículo: "
+                    + ex.getMostSpecificCause().getMessage(), ex);
         }
     }
 
     // ===== Eliminar por ID =====
     @Transactional
     public boolean eliminar(Long id) {
-        if (!repo.existsById(id)) return false;
-        repo.deleteById(id);
-        log.info("Vehiculo eliminado id={}", id);
-        return true;
+        if (id == null) throw new IllegalArgumentException("El id es obligatorio para eliminar.");
+        if (!repo.existsById(id)) throw new EntityNotFoundException("No se encontró vehículo con id=" + id);
+
+        try {
+            repo.deleteById(id);
+            log.info("Vehiculo eliminado id={}", id);
+            return true;
+        } catch (DataIntegrityViolationException ex) {
+            throw new IllegalArgumentException("No se pudo eliminar vehículo id=" + id +
+                    " debido a restricciones en la base de datos.", ex);
+        }
     }
 }

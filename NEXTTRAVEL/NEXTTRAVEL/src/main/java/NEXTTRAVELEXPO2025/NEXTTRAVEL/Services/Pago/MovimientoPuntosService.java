@@ -4,6 +4,8 @@ import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Nucleo.Cliente;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Pago.MovimientoPuntos;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Pago.PuntosCliente;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Reservas.Reserva;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.BadRequestException;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.ResourceNotFoundException;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Pago.MovimientoPuntosDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Nucleo.ClienteRepository;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Pago.MovimientoPuntosRepository;
@@ -51,24 +53,49 @@ public class MovimientoPuntosService {
         );
     }
 
+    private void validateTipo(String tipo) {
+        if (tipo == null || tipo.isBlank()) {
+            throw new BadRequestException("El campo 'tipo' es obligatorio.");
+        }
+        if (!tipo.equalsIgnoreCase("ACREDITACION") && !tipo.equalsIgnoreCase("CONSUMO")) {
+            throw new BadRequestException("El campo 'tipo' debe ser 'ACREDITACION' o 'CONSUMO'.");
+        }
+    }
+
+    private void validatePuntos(Integer puntos) {
+        if (puntos == null || puntos <= 0) {
+            throw new BadRequestException("Los 'puntosCambiados' deben ser mayores que 0.");
+        }
+    }
+
     // ===== Listado / Búsquedas =====
     public Page<MovimientoPuntosDTO> listar(Pageable p) {
         return repo.findAll(p).map(this::toDTO);
     }
 
     public Page<MovimientoPuntosDTO> buscarPorDui(String q, Pageable p) {
+        if (q == null || q.isBlank()) {
+            throw new BadRequestException("El parámetro 'duiCliente' no puede estar vacío.");
+        }
         return repo.findByCliente_DuiContainingIgnoreCase(q, p).map(this::toDTO);
     }
 
     public Page<MovimientoPuntosDTO> buscarPorTipo(String tipo, Pageable p) {
+        validateTipo(tipo);
         return repo.findByTipo(tipo.toUpperCase(), p).map(this::toDTO);
     }
 
     public Page<MovimientoPuntosDTO> buscarPorDescripcion(String q, Pageable p) {
+        if (q == null || q.isBlank()) {
+            throw new BadRequestException("El parámetro 'descripcion' no puede estar vacío.");
+        }
         return repo.findByDescripcionContainingIgnoreCase(q, p).map(this::toDTO);
     }
 
     public Page<MovimientoPuntosDTO> buscarPorReserva(Long idReserva, Pageable p) {
+        if (idReserva == null || idReserva <= 0) {
+            throw new BadRequestException("El parámetro 'idReserva' no es válido.");
+        }
         return repo.findByReserva_IdReserva(idReserva, p).map(this::toDTO);
     }
 
@@ -79,7 +106,10 @@ public class MovimientoPuntosService {
         return repo.findByPuntosCambiadosBetween(from, to, p).map(this::toDTO);
     }
 
-    public Page<MovimientoPuntosDTO> buscarPorFecha(java.time.LocalDateTime d, java.time.LocalDateTime h, Pageable p) {
+    public Page<MovimientoPuntosDTO> buscarPorFecha(LocalDateTime d, LocalDateTime h, Pageable p) {
+        if (d == null || h == null) {
+            throw new BadRequestException("El rango de fechas es obligatorio.");
+        }
         return repo.findByFechaBetween(d, h, p).map(this::toDTO);
     }
 
@@ -87,85 +117,90 @@ public class MovimientoPuntosService {
     @Transactional
     public Long crear(@Valid MovimientoPuntosDTO dto) {
         Cliente cliente = clienteRepo.findById(dto.getDuiCliente())
-                .orElseThrow(() -> new EntityNotFoundException("No existe Cliente con DUI: " + dto.getDuiCliente()));
+                .orElseThrow(() -> new ResourceNotFoundException("No existe Cliente con DUI: " + dto.getDuiCliente()));
 
         Reserva reserva = null;
         if (dto.getIdReserva() != null) {
             reserva = reservaRepo.findById(dto.getIdReserva())
-                    .orElseThrow(() -> new EntityNotFoundException("No existe Reserva con id: " + dto.getIdReserva()));
+                    .orElseThrow(() -> new ResourceNotFoundException("No existe Reserva con id: " + dto.getIdReserva()));
         }
 
-        String tipo = dto.getTipo().toUpperCase();
-        if (!tipo.equals("ACREDITACION") && !tipo.equals("CONSUMO")) {
-            throw new IllegalArgumentException("tipo debe ser ACREDITACION o CONSUMO");
-        }
+        validateTipo(dto.getTipo());
+        validatePuntos(dto.getPuntosCambiados());
 
-        int change = signed(tipo, dto.getPuntosCambiados());
-
+        int change = signed(dto.getTipo(), dto.getPuntosCambiados());
         PuntosCliente saldo = getOrCreateSaldo(dto.getDuiCliente());
-        int nuevo = saldo.getPuntos() + change;
-        if (nuevo < 0) throw new IllegalArgumentException("El movimiento dejaría el saldo en negativo.");
 
-        // Persistimos movimiento
+        int nuevo = saldo.getPuntos() + change;
+        if (nuevo < 0) {
+            throw new BadRequestException("El movimiento dejaría el saldo de puntos en negativo.");
+        }
+
         MovimientoPuntos mov = MovimientoPuntos.builder()
                 .cliente(cliente)
                 .reserva(reserva)
-                .tipo(tipo)
+                .tipo(dto.getTipo().toUpperCase())
                 .puntosCambiados(dto.getPuntosCambiados())
                 .descripcion(dto.getDescripcion())
                 .fecha(dto.getFecha() != null ? dto.getFecha() : LocalDateTime.now())
                 .build();
-        MovimientoPuntos g = repo.save(mov);
 
-        // Actualizamos saldo
+        MovimientoPuntos g = repo.save(mov);
         saldo.setPuntos(nuevo);
         puntosRepo.save(saldo);
 
         log.info("MovimientoPuntos creado id={} dui={} tipo={} puntos={} saldo={}",
-                g.getIdMovimiento(), cliente.getDui(), tipo, dto.getPuntosCambiados(), nuevo);
+                g.getIdMovimiento(), cliente.getDui(), dto.getTipo(), dto.getPuntosCambiados(), nuevo);
+
         return g.getIdMovimiento();
     }
 
     // ===== Actualizar =====
     @Transactional
     public void actualizar(Long id, @Valid MovimientoPuntosDTO dto) {
+        if (id == null || id <= 0) {
+            throw new BadRequestException("El id proporcionado no es válido.");
+        }
+
         MovimientoPuntos e = repo.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No se encontró MovimientoPuntos con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró MovimientoPuntos con id: " + id));
 
         String oldTipo = e.getTipo();
         int oldSigned = signed(oldTipo, e.getPuntosCambiados());
 
-        // Cambios de relaciones
-        if (dto.getDuiCliente() != null && (e.getCliente() == null || !dto.getDuiCliente().equals(e.getCliente().getDui()))) {
+        if (dto.getDuiCliente() != null &&
+                (e.getCliente() == null || !dto.getDuiCliente().equals(e.getCliente().getDui()))) {
             Cliente c = clienteRepo.findById(dto.getDuiCliente())
-                    .orElseThrow(() -> new EntityNotFoundException("No existe Cliente con DUI: " + dto.getDuiCliente()));
+                    .orElseThrow(() -> new ResourceNotFoundException("No existe Cliente con DUI: " + dto.getDuiCliente()));
             e.setCliente(c);
         }
         if (dto.getIdReserva() != null) {
             Reserva r = reservaRepo.findById(dto.getIdReserva())
-                    .orElseThrow(() -> new EntityNotFoundException("No existe Reserva con id: " + dto.getIdReserva()));
+                    .orElseThrow(() -> new ResourceNotFoundException("No existe Reserva con id: " + dto.getIdReserva()));
             e.setReserva(r);
         }
 
-        // Datos básicos
-        if (dto.getTipo() != null) e.setTipo(dto.getTipo().toUpperCase());
-        if (dto.getPuntosCambiados() != null) e.setPuntosCambiados(dto.getPuntosCambiados());
+        if (dto.getTipo() != null) {
+            validateTipo(dto.getTipo());
+            e.setTipo(dto.getTipo().toUpperCase());
+        }
+        if (dto.getPuntosCambiados() != null) {
+            validatePuntos(dto.getPuntosCambiados());
+            e.setPuntosCambiados(dto.getPuntosCambiados());
+        }
         if (dto.getDescripcion() != null) e.setDescripcion(dto.getDescripcion());
         if (dto.getFecha() != null) e.setFecha(dto.getFecha());
 
-        // Recalcular delta y ajustar saldo del (nuevo) cliente
         String newTipo = e.getTipo();
-        if (!newTipo.equals("ACREDITACION") && !newTipo.equals("CONSUMO"))
-            throw new IllegalArgumentException("tipo debe ser ACREDITACION o CONSUMO");
-
         int newSigned = signed(newTipo, e.getPuntosCambiados());
 
-        // Nota: si cambió el DUI, el ajuste se hace sobre el nuevo DUI
         String dui = e.getCliente().getDui();
         PuntosCliente saldo = getOrCreateSaldo(dui);
 
         int nuevoSaldo = saldo.getPuntos() - oldSigned + newSigned;
-        if (nuevoSaldo < 0) throw new IllegalArgumentException("La actualización dejaría el saldo en negativo.");
+        if (nuevoSaldo < 0) {
+            throw new BadRequestException("La actualización dejaría el saldo de puntos en negativo.");
+        }
 
         repo.save(e);
         saldo.setPuntos(nuevoSaldo);
@@ -178,16 +213,21 @@ public class MovimientoPuntosService {
     // ===== Eliminar (revierte el efecto) =====
     @Transactional
     public boolean eliminar(Long id) {
-        MovimientoPuntos e = repo.findById(id).orElse(null);
-        if (e == null) return false;
+        if (id == null || id <= 0) {
+            throw new BadRequestException("El id proporcionado no es válido.");
+        }
+
+        MovimientoPuntos e = repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró MovimientoPuntos con id: " + id));
 
         String dui = e.getCliente().getDui();
-        int revert = -signed(e.getTipo(), e.getPuntosCambiados()); // revertir efecto
+        int revert = -signed(e.getTipo(), e.getPuntosCambiados());
         PuntosCliente saldo = getOrCreateSaldo(dui);
 
         int nuevoSaldo = saldo.getPuntos() + revert;
-        if (nuevoSaldo < 0)
-            throw new IllegalArgumentException("No se puede eliminar: dejaría el saldo en negativo.");
+        if (nuevoSaldo < 0) {
+            throw new BadRequestException("No se puede eliminar: dejaría el saldo en negativo.");
+        }
 
         repo.deleteById(id);
         saldo.setPuntos(nuevoSaldo);

@@ -3,6 +3,8 @@ package NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Lugar;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Lugar.CalificacionLugar;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Lugar.LugarTuristico;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Nucleo.Cliente;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.BadRequestException;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.ResourceNotFoundException;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Lugar.CalificacionLugarDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Lugar.CalificacionLugarRepository;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Lugar.LugarTuristicoRepository;
@@ -27,7 +29,7 @@ public class CalificacionLugarService {
 
     private void validatePuntuacion(Integer p) {
         if (p == null || p < 1 || p > 5) {
-            throw new IllegalArgumentException("puntuacion debe estar entre 1 y 5.");
+            throw new BadRequestException("La puntuación debe estar entre 1 y 5.");
         }
     }
 
@@ -37,10 +39,12 @@ public class CalificacionLugarService {
         validatePuntuacion(dto.getPuntuacion());
 
         LugarTuristico lugar = lugarRepo.findById(dto.getIdLugar())
-                .orElseThrow(() -> new EntityNotFoundException("No existe LugarTuristico con id: " + dto.getIdLugar()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No existe LugarTuristico con id: " + dto.getIdLugar()));
 
         Cliente cliente = clienteRepo.findById(dto.getDuiCliente())
-                .orElseThrow(() -> new EntityNotFoundException("No existe Cliente con DUI: " + dto.getDuiCliente()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No existe Cliente con DUI: " + dto.getDuiCliente()));
 
         CalificacionLugar e = CalificacionLugar.builder()
                 .lugar(lugar)
@@ -51,7 +55,8 @@ public class CalificacionLugarService {
                 .build();
 
         CalificacionLugar g = repo.save(e);
-        log.info("CalificacionLugar creada id={} lugar={} cliente={}", g.getIdCalificacionLugar(), lugar.getIdLugar(), cliente.getDui());
+        log.info("CalificacionLugar creada id={} lugar={} cliente={}",
+                g.getIdCalificacionLugar(), lugar.getIdLugar(), cliente.getDui());
         return g.getIdCalificacionLugar();
     }
 
@@ -59,17 +64,22 @@ public class CalificacionLugarService {
     @Transactional
     public void actualizar(Long id, @Valid CalificacionLugarDTO dto) {
         CalificacionLugar e = repo.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No se encontró CalificacionLugar con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No se encontró CalificacionLugar con id: " + id));
 
-        if (dto.getIdLugar() != null && (e.getLugar() == null || !dto.getIdLugar().equals(e.getLugar().getIdLugar()))) {
+        if (dto.getIdLugar() != null &&
+                (e.getLugar() == null || !dto.getIdLugar().equals(e.getLugar().getIdLugar()))) {
             LugarTuristico lugar = lugarRepo.findById(dto.getIdLugar())
-                    .orElseThrow(() -> new EntityNotFoundException("No existe LugarTuristico con id: " + dto.getIdLugar()));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "No existe LugarTuristico con id: " + dto.getIdLugar()));
             e.setLugar(lugar);
         }
 
-        if (dto.getDuiCliente() != null && (e.getCliente() == null || !dto.getDuiCliente().equals(e.getCliente().getDui()))) {
+        if (dto.getDuiCliente() != null &&
+                (e.getCliente() == null || !dto.getDuiCliente().equals(e.getCliente().getDui()))) {
             Cliente cliente = clienteRepo.findById(dto.getDuiCliente())
-                    .orElseThrow(() -> new EntityNotFoundException("No existe Cliente con DUI: " + dto.getDuiCliente()));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "No existe Cliente con DUI: " + dto.getDuiCliente()));
             e.setCliente(cliente);
         }
 
@@ -87,7 +97,9 @@ public class CalificacionLugarService {
     // Eliminar por ID
     @Transactional
     public boolean eliminar(Long id) {
-        if (!repo.existsById(id)) return false;
+        if (!repo.existsById(id)) {
+            throw new ResourceNotFoundException("No existe CalificacionLugar con id: " + id);
+        }
         repo.deleteById(id);
         log.info("CalificacionLugar eliminada id={}", id);
         return true;

@@ -2,6 +2,8 @@ package NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Lugar;
 
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Lugar.LugarMedia;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Lugar.LugarTuristico;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.BadRequestException;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.ResourceNotFoundException;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Lugar.LugarMediaDTO;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Lugar.LugarMediaRepository;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Lugar.LugarTuristicoRepository;
@@ -21,7 +23,9 @@ public class LugarMediaService {
     private final LugarMediaRepository repo;
     private final LugarTuristicoRepository lugarRepo;
 
-    private String toFlag(Boolean primary) { return (primary != null && primary) ? "S" : "N"; }
+    private String toFlag(Boolean primary) {
+        return (primary != null && primary) ? "S" : "N";
+    }
 
     private void apply(LugarMedia e, LugarMediaDTO dto) {
         if (dto.getUrl() != null) e.setUrl(dto.getUrl());
@@ -34,12 +38,13 @@ public class LugarMediaService {
     @Transactional
     public Long crear(@Valid LugarMediaDTO dto) {
         LugarTuristico lugar = lugarRepo.findById(dto.getIdLugar())
-                .orElseThrow(() -> new EntityNotFoundException("No existe LugarTuristico con id: " + dto.getIdLugar()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No existe LugarTuristico con id: " + dto.getIdLugar()));
 
         // Chequeo amistoso a la UNIQUE (idLugar, position)
         if (dto.getPosition() != null &&
                 repo.existsByLugar_IdLugarAndPosition(dto.getIdLugar(), dto.getPosition())) {
-            throw new IllegalArgumentException("Ya existe media en ese lugar con la misma posición.");
+            throw new BadRequestException("Ya existe media en ese lugar con la misma posición.");
         }
 
         LugarMedia e = LugarMedia.builder()
@@ -56,7 +61,8 @@ public class LugarMediaService {
             return g.getIdLugarMedia();
         } catch (DataIntegrityViolationException ex) {
             // captura regex URL, unique (idLugar, position), etc.
-            throw new IllegalArgumentException("Violación de integridad de datos: " + ex.getMostSpecificCause().getMessage(), ex);
+            throw new BadRequestException("Violación de integridad de datos: "
+                    + ex.getMostSpecificCause().getMessage());
         }
     }
 
@@ -64,12 +70,14 @@ public class LugarMediaService {
     @Transactional
     public void actualizar(Long id, @Valid LugarMediaDTO dto) {
         LugarMedia e = repo.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No se encontró LugarMedia con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No se encontró LugarMedia con id: " + id));
 
-        if (dto.getIdLugar() != null && (e.getLugar() == null ||
-                !dto.getIdLugar().equals(e.getLugar().getIdLugar()))) {
+        if (dto.getIdLugar() != null &&
+                (e.getLugar() == null || !dto.getIdLugar().equals(e.getLugar().getIdLugar()))) {
             LugarTuristico lugar = lugarRepo.findById(dto.getIdLugar())
-                    .orElseThrow(() -> new EntityNotFoundException("No existe LugarTuristico con id: " + dto.getIdLugar()));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "No existe LugarTuristico con id: " + dto.getIdLugar()));
             e.setLugar(lugar);
         }
 
@@ -78,7 +86,7 @@ public class LugarMediaService {
             Long idLugar = (dto.getIdLugar() != null) ? dto.getIdLugar() : e.getLugar().getIdLugar();
             if (repo.existsByLugar_IdLugarAndPosition(idLugar, dto.getPosition())
                     && !dto.getPosition().equals(e.getPosition())) {
-                throw new IllegalArgumentException("Ya existe media en ese lugar con la misma posición.");
+                throw new BadRequestException("Ya existe media en ese lugar con la misma posición.");
             }
         }
 
@@ -87,14 +95,17 @@ public class LugarMediaService {
             repo.save(e);
             log.info("LugarMedia actualizado id={}", id);
         } catch (DataIntegrityViolationException ex) {
-            throw new IllegalArgumentException("Violación de integridad de datos: " + ex.getMostSpecificCause().getMessage(), ex);
+            throw new BadRequestException("Violación de integridad de datos: "
+                    + ex.getMostSpecificCause().getMessage());
         }
     }
 
     // Eliminar por ID
     @Transactional
     public boolean eliminar(Long id) {
-        if (!repo.existsById(id)) return false;
+        if (!repo.existsById(id)) {
+            throw new ResourceNotFoundException("No existe LugarMedia con id: " + id);
+        }
         repo.deleteById(id);
         log.info("LugarMedia eliminado id={}", id);
         return true;

@@ -32,13 +32,14 @@ public class TipoMantenimientoService {
                 .build();
     }
 
+    // ===== Listar solo ID y nombre =====
     public List<TipoMantenimientoMinDTO> listarSoloTipos() {
         return repo.findAll().stream()
                 .map(t -> new TipoMantenimientoMinDTO(
                         t.getIdTipoMantenimiento(),
                         t.getNombreTipo()
                 ))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     // ===== Listado / Búsquedas =====
@@ -57,53 +58,84 @@ public class TipoMantenimientoService {
     // ===== Crear =====
     @Transactional
     public Long crear(@Valid TipoMantenimientoDTO dto) {
+        if (dto.getNombreTipo() == null || dto.getNombreTipo().isBlank()) {
+            throw new IllegalArgumentException("El nombre del tipo de mantenimiento es obligatorio.");
+        }
+
         String nombre = dto.getNombreTipo().trim();
-        if (repo.existsByNombreTipoIgnoreCase(nombre))
+
+        if (repo.existsByNombreTipoIgnoreCase(nombre)) {
             throw new IllegalArgumentException("Ya existe un TipoMantenimiento con ese nombre.");
+        }
 
         try {
             TipoMantenimiento e = TipoMantenimiento.builder()
                     .nombreTipo(nombre)
                     .descripcion(dto.getDescripcion())
                     .build();
+
             TipoMantenimiento g = repo.save(e);
             log.info("TipoMantenimiento creado id={} nombre={}", g.getIdTipoMantenimiento(), g.getNombreTipo());
             return g.getIdTipoMantenimiento();
         } catch (DataIntegrityViolationException ex) {
-            throw new IllegalArgumentException("Violación de unicidad/validación en la base de datos.", ex);
+            throw new IllegalArgumentException("Error de integridad al crear TipoMantenimiento: "
+                    + ex.getMostSpecificCause().getMessage(), ex);
         }
     }
 
     // ===== Actualizar por ID =====
     @Transactional
     public void actualizar(Long id, @Valid TipoMantenimientoDTO dto) {
+        if (id == null) {
+            throw new IllegalArgumentException("El id es obligatorio para actualizar.");
+        }
+
         TipoMantenimiento e = repo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró TipoMantenimiento con id: " + id));
 
         if (dto.getNombreTipo() != null) {
             String nuevo = dto.getNombreTipo().trim();
+            if (nuevo.isBlank()) {
+                throw new IllegalArgumentException("El nombre del tipo de mantenimiento no puede estar vacío.");
+            }
             if (!nuevo.equalsIgnoreCase(e.getNombreTipo()) &&
                     repo.existsByNombreTipoIgnoreCase(nuevo)) {
                 throw new IllegalArgumentException("Ya existe un TipoMantenimiento con ese nombre.");
             }
             e.setNombreTipo(nuevo);
         }
-        if (dto.getDescripcion() != null) e.setDescripcion(dto.getDescripcion());
+
+        if (dto.getDescripcion() != null) {
+            e.setDescripcion(dto.getDescripcion());
+        }
 
         try {
             repo.save(e);
             log.info("TipoMantenimiento actualizado id={}", id);
         } catch (DataIntegrityViolationException ex) {
-            throw new IllegalArgumentException("Violación de unicidad/validación en la base de datos.", ex);
+            throw new IllegalArgumentException("Error de integridad al actualizar TipoMantenimiento: "
+                    + ex.getMostSpecificCause().getMessage(), ex);
         }
     }
 
     // ===== Eliminar por ID =====
     @Transactional
     public boolean eliminar(Long id) {
-        if (!repo.existsById(id)) return false;
-        repo.deleteById(id);
-        log.info("TipoMantenimiento eliminado id={}", id);
-        return true;
+        if (id == null) {
+            throw new IllegalArgumentException("El id es obligatorio para eliminar.");
+        }
+
+        if (!repo.existsById(id)) {
+            throw new EntityNotFoundException("No se encontró TipoMantenimiento con id=" + id);
+        }
+
+        try {
+            repo.deleteById(id);
+            log.info("TipoMantenimiento eliminado id={}", id);
+            return true;
+        } catch (DataIntegrityViolationException ex) {
+            throw new IllegalArgumentException("No se pudo eliminar el TipoMantenimiento id=" + id
+                    + " debido a restricciones en la base de datos.", ex);
+        }
     }
 }
