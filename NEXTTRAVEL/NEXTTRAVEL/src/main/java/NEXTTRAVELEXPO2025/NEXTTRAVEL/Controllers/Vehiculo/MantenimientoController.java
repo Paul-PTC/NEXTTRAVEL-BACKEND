@@ -136,7 +136,7 @@ public class MantenimientoController {
 
     // ===== POST/PUT/DELETE (tabla) =====
     // Crear -> /api/mantenimientos/mantenimientos
-    @PostMapping("/mantenimientos")
+    @PostMapping("/mantenimientosA")
     public ResponseEntity<?> crear(@Valid @RequestBody MantenimientoDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> field = new HashMap<>();
@@ -205,7 +205,7 @@ public class MantenimientoController {
     }
 
     // Eliminar -> /api/mantenimientos/mantenimientos/{id}
-    @DeleteMapping("/mantenimientos/{id}")
+    @DeleteMapping("/mantenimientosE/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
         try {
             boolean eliminado = service.eliminar(id);

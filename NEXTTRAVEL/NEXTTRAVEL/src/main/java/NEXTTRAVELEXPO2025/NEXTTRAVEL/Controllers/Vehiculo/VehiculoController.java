@@ -94,7 +94,7 @@ public class VehiculoController {
     }
 
     // ===== POST crear -> /api/vehiculos/vehiculos
-    @PostMapping("/vehiculos")
+    @PostMapping("/vehiculosC")
     public ResponseEntity<?> crear(@Valid @RequestBody VehiculoDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> field = new HashMap<>();
@@ -129,7 +129,7 @@ public class VehiculoController {
     }
 
     // ===== PUT actualizar -> /api/vehiculos/vehiculos/{id}
-    @PutMapping("/vehiculos/{id}")
+    @PutMapping("/vehiculosA/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
                                         @Valid @RequestBody VehiculoDTO dto,
                                         BindingResult result) {
@@ -157,7 +157,7 @@ public class VehiculoController {
     }
 
     // ===== DELETE eliminar -> /api/vehiculos/vehiculos/{id}
-    @DeleteMapping("/vehiculos/{id}")
+    @DeleteMapping("/vehiculosE/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
         try {
             boolean eliminado = service.eliminar(id);

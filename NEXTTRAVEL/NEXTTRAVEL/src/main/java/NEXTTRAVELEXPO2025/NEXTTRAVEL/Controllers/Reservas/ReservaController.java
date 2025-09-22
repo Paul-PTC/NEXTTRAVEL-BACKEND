@@ -119,7 +119,7 @@ public class ReservaController {
     }
 
     // ===== POST/PUT/DELETE (tabla) =====
-    @PostMapping("/reservas")
+    @PostMapping("/reservasC")
     public ResponseEntity<?> crear(@Valid @RequestBody ReservaDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> field = new HashMap<>();
@@ -153,7 +153,7 @@ public class ReservaController {
         }
     }
 
-    @PutMapping("/reservas/{id}")
+    @PutMapping("/reservasA/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
                                         @Valid @RequestBody ReservaDTO dto,
                                         BindingResult result) {
@@ -175,7 +175,7 @@ public class ReservaController {
         }
     }
 
-    @DeleteMapping("/reservas/{id}")
+    @DeleteMapping("/reservasD/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
         try {
             boolean eliminado = reservaService.eliminar(id);

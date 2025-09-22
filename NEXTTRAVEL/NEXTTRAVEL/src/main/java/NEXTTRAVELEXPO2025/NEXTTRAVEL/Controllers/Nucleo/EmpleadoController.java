@@ -35,7 +35,7 @@ public class EmpleadoController {
     }
 
     // ===== GET (vista) =====
-    @GetMapping
+    @GetMapping("/EmpleadoListar")
     public ResponseEntity<Page<VwEmpleadoDTO>> listar(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -107,7 +107,7 @@ public class EmpleadoController {
     }
 
     // ===== POST/PUT/DELETE (tabla) =====
-    @PostMapping
+    @PostMapping("/EmpleadoC")
     public ResponseEntity<?> crear(@Valid @RequestBody EmpleadoDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> fieldErrors = new HashMap<>();
@@ -140,7 +140,7 @@ public class EmpleadoController {
         }
     }
 
-    @PutMapping("/{dui}")
+    @PutMapping("/EmpleadoA/{dui}")
     public ResponseEntity<?> actualizar(@PathVariable String dui,
                                         @Valid @RequestBody EmpleadoDTO dto,
                                         BindingResult result) {
@@ -161,7 +161,7 @@ public class EmpleadoController {
         }
     }
 
-    @DeleteMapping("/{dui}")
+    @DeleteMapping("/EmpleadoE/{dui}")
     public ResponseEntity<?> eliminar(@PathVariable String dui) {
         try {
             boolean eliminado = empService.eliminarPorDui(dui);

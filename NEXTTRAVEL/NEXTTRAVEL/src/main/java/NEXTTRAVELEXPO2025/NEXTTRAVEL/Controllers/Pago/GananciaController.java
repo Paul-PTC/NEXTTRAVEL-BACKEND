@@ -128,7 +128,7 @@ public class GananciaController {
     }
 
     // ===== POST/PUT/DELETE (tabla) =====
-    @PostMapping("/gananciasI")
+    @PostMapping("/gananciasC")
     public ResponseEntity<?> crear(@Valid @RequestBody GananciaDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> field = new HashMap<>();
@@ -168,7 +168,7 @@ public class GananciaController {
         }
     }
 
-    @PutMapping("/ganancias/{id}")
+    @PutMapping("/gananciasA/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
                                         @Valid @RequestBody GananciaDTO dto,
                                         BindingResult result) {
@@ -195,7 +195,7 @@ public class GananciaController {
         }
     }
 
-    @DeleteMapping("/ganancias/{id}")
+    @DeleteMapping("/gananciasE/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
         try {
             boolean eliminado = service.eliminar(id);

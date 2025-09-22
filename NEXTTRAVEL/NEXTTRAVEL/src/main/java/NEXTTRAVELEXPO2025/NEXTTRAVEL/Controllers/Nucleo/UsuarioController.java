@@ -64,7 +64,7 @@ public class UsuarioController {
         ));
     }
 
-    @GetMapping
+    @GetMapping("/UsuariosListar")
     public ResponseEntity<?> listar(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -97,7 +97,7 @@ public class UsuarioController {
     }
 
     // POST: crear un nuevo usuario
-    @PostMapping
+    @PostMapping("/UsuarioC")
     public ResponseEntity<?> crear(
             @RequestParam String nombreUsuario,
             @RequestParam String correo,
@@ -124,7 +124,7 @@ public class UsuarioController {
     }
 
     // PUT: actualizar un usuario por ID
-    @PutMapping("/{id}")
+    @PutMapping("/UsuarioA/{id}")
     public ResponseEntity<?> actualizarPorId(
             @PathVariable Long id,
             @RequestParam String nombreUsuario,
@@ -163,7 +163,7 @@ public class UsuarioController {
     }
 
     // DELETE: eliminar un usuario por ID
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/UsuarioE/{id}")
     public ResponseEntity<?> eliminarPorId(@PathVariable Long id) {
         try {
             boolean eliminado = usuarioService.eliminarPorId(id);

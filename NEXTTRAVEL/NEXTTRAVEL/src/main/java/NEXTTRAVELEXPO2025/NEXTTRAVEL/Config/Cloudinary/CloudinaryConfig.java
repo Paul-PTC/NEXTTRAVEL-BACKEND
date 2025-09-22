@@ -1,4 +1,4 @@
-package NEXTTRAVELEXPO2025.NEXTTRAVEL.Cloudinary;
+package NEXTTRAVELEXPO2025.NEXTTRAVEL.Config.Cloudinary;
 
 import com.cloudinary.Cloudinary;
 import io.github.cdimascio.dotenv.Dotenv;

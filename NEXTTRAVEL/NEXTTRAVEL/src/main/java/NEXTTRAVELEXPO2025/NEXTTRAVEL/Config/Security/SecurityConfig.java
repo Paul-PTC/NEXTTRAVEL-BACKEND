@@ -11,38 +11,86 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final JwtCookieAuthFilter jwtCookieAuthFilter;
 
-    public SecurityConfig(JwtCookieAuthFilter jwtCookieAuthFilter) {
+    private final JwtCookieAuthFilter jwtCookieAuthFilter;
+    private final CorsConfigurationSource corsConfigurationSource; // Inyecta CorsConfigurationSource
+
+    public SecurityConfig(JwtCookieAuthFilter jwtCookieAuthFilter,
+                          CorsConfigurationSource corsConfigurationSource) {
         this.jwtCookieAuthFilter = jwtCookieAuthFilter;
+        this.corsConfigurationSource = corsConfigurationSource;
     }
 
-    // Configuración de seguridad HTTP
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //Aqui van todos los endPoints Publicos que no requieren de JWT(Osea solo los del LOGIN)
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
-                .csrf(csrf -> csrf.disable())  // Nuevo estilo lambda
-                .authorizeHttpRequests(auth -> auth  // Cambia authorizeRequests por authorizeHttpRequests
-                        .requestMatchers(HttpMethod.POST,
-                                "/api/auth/login",
-                                "/api/auth/logout")
-                        .permitAll()
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // ← Permite preflight requests
+                        .requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/logout").permitAll()
                         .requestMatchers("/api/auth/me").authenticated()
-                        .requestMatchers("/api/test/admin-only").hasRole("Administrador")
-                        .requestMatchers("/api/test/cliente-only").hasRole("Cliente")
+
+                        //Endpoints de MANTENIMIENTO
+                        .requestMatchers(HttpMethod.GET, "/api/mantenimientos/mantenimientos/listar").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/mantenimientos/mantenimientosA").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/mantenimientos/mantenimientosU/{id}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/mantenimientos/mantenimientosE/{id}").authenticated()
+
+                        //Endpoints de RESERVAS
+                        .requestMatchers(HttpMethod.GET, "/api/reservas/reservas/listar").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/reservas/reservasC").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/reservas/reservasA/{id}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/reservas/reservasD/{id}").authenticated()
+
+                        //Endpoints de CLIENTE
+                        .requestMatchers(HttpMethod.GET, "/api/clientes/ClientesListar").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/clientes/ClientesC").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+                        .requestMatchers(HttpMethod.PUT, "/api/clientes/ClientesA/{dui}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+                        .requestMatchers(HttpMethod.DELETE, "/api/clientes/ClientesE/{dui}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+
+                        //Endpoints de EMPLEADOS
+                        .requestMatchers(HttpMethod.GET, "/api/empleados/EmpleadoListar").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/empleados/EmpleadoC").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+                        .requestMatchers(HttpMethod.PUT, "/api/empleados/EmpleadoA/{dui}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+                        .requestMatchers(HttpMethod.DELETE, "/api/empleados/EmpleadoE/{dui}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+
+                        //Endpoints de USUARIOS
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios/UsuariosListar").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/usuarios/UsuarioC").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/usuarios/UsuarioA/{id}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/usuarios/UsuarioE/{id}").authenticated()
+
+                        //Endpoints de VEHICULOS
+                        .requestMatchers(HttpMethod.GET, "/api/vehiculos/vehiculos/listar").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/vehiculos/vehiculosC").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+                        .requestMatchers(HttpMethod.PUT, "/api/vehiculos/vehiculosA/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+                        .requestMatchers(HttpMethod.DELETE, "/api/vehiculos/vehiculosE/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+
+                        //Endpoints de GASTOS
+                        .requestMatchers(HttpMethod.GET, "/api/gastos/gastos/listar").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/gastos/gastosC").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+                        .requestMatchers(HttpMethod.PUT, "/api/gastos/gastosU/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+                        .requestMatchers(HttpMethod.DELETE, "/api/gastos/gastosE/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE","ROLE_EMPLEADO")
+
+                        //Endpoints de GANANCIA
+                        .requestMatchers(HttpMethod.GET, "/api/ganancias/ganancias/listar").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/ganancias/gananciasC").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE")
+                        .requestMatchers(HttpMethod.PUT, "/api/ganancias/gananciasA/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE")
+                        .requestMatchers(HttpMethod.DELETE, "/api/ganancias/gananciasE/{id}").hasAnyAuthority("ROLE_ADMIN","ROLE_JEFE")
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtCookieAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-    // Exponer el AuthenticationManager como bean
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();

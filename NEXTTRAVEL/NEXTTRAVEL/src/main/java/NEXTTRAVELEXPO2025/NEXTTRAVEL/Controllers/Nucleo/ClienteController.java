@@ -39,7 +39,7 @@ public class ClienteController {
         return PageRequest.of(page, size, Sort.by(new Sort.Order(dir, s[0])));
     }
 
-    @GetMapping
+    @GetMapping("/ClientesListar")
     public ResponseEntity<Page<VwClienteDTO>> listar(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -128,7 +128,7 @@ public class ClienteController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/ClientesC")
     public ResponseEntity<?> crear(@Valid @RequestBody ClienteDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> field = new HashMap<>();
@@ -160,7 +160,7 @@ public class ClienteController {
         }
     }
 
-    @PutMapping("/{dui}")
+    @PutMapping("/ClientesA/{dui}")
     public ResponseEntity<?> actualizar(@PathVariable String dui,
                                         @Valid @RequestBody ClienteDTO dto,
                                         BindingResult result) {
@@ -180,7 +180,7 @@ public class ClienteController {
         }
     }
 
-    @DeleteMapping("/{dui}")
+    @DeleteMapping("/ClientesE/{dui}")
     public ResponseEntity<?> eliminar(@PathVariable String dui) {
         try {
             boolean eliminado = clienteService.eliminarPorDui(dui);
