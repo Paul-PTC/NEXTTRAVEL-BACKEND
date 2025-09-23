@@ -1,11 +1,6 @@
 package NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Nucleo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,5 +29,20 @@ public class Usuario {
     @Column(name = "ROL", nullable = false, length = 50)
     private String rol;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDTIPOUSUARIO", referencedColumnName = "IDTIPOUSUARIO")
+    private TipoUsuario tipoUsuario;
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", contraseniaHash='" + contraseniaHash + '\'' +
+                ", correo='" + correo + '\'' +
+                ", rol='" + rol + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                '}';
+    }
 
 }
