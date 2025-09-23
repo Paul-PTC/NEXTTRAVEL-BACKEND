@@ -47,6 +47,7 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
         }
 
         try {
+            System.out.println("Creacion de la Cookie");
             String token = extractTokenFromCookies(request);
 
             if (token == null || token.isBlank()) {
@@ -58,6 +59,7 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 return;
             }
+            System.out.println("Cookie paso el fitlro Interno");
 
             Claims claims = jwtUtils.parseToken(token);
 
@@ -69,6 +71,7 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
             // CREAR AUTHORITIES BASADO EN EL ROL REAL
             Collection<? extends GrantedAuthority> authorities =
                     Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + rol));
+            System.out.println("Creando basado en el rol");
 
             // CREAR AUTENTICACIÓN CON AUTHORITIES CORRECTOS
             UsernamePasswordAuthenticationToken authentication =
@@ -77,7 +80,7 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
                             null, // credentials
                             authorities // ← ROLES REALES
                     );
-
+            System.out.println("Autenticacion Autorities");
             // ESTABLECER AUTENTICACIÓN EN CONTEXTO
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -93,11 +96,15 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
             log.error("Error de autenticación", e);
             sendError(response, "Error de autenticación", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
+        System.out.println("Ya Terminamos la Cookie");
     }
 
     private String extractTokenFromCookies(HttpServletRequest request) {
+        System.out.println("Dentro de la Cookie ");
         Cookie[] cookies = request.getCookies();
         if (cookies == null) return null;
+
+        System.out.println("Extrayendo el Token de la Cookie");
 
         return Arrays.stream(cookies)
                 .filter(c -> AUTH_COOKIE_NAME.equals(c.getName()))
@@ -105,7 +112,6 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
                 .map(Cookie::getValue)
                 .orElse(null);
     }
-
     private void sendError(HttpServletResponse response, String message, int status) throws IOException {
         response.setContentType("application/json");
         response.setStatus(status);
@@ -117,7 +123,7 @@ public class JwtCookieAuthFilter extends OncePerRequestFilter {
     private boolean isPublicEndpoint(HttpServletRequest request) {
         String path = request.getRequestURI();
         String method = request.getMethod();
-
+        System.out.println("Creando EndPoints Publicos");
         // Endpoints públicos
         return (path.equals("/api/auth/login") && "POST".equals(method)) ||
                 (path.equals("/api/auth/register") && "POST".equals(method)) ||

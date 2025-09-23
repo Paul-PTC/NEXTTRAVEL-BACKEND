@@ -26,9 +26,6 @@ public class Usuario {
     @Column(name = "CORREO", nullable = false, length = 150, unique = true)
     private String correo;
 
-    @Column(name = "ROL", nullable = false, length = 50)
-    private String rol;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IDTIPOUSUARIO", referencedColumnName = "IDTIPOUSUARIO")
     private TipoUsuario tipoUsuario;
@@ -40,7 +37,6 @@ public class Usuario {
                 ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", contraseniaHash='" + contraseniaHash + '\'' +
                 ", correo='" + correo + '\'' +
-                ", rol='" + rol + '\'' +
                 ", tipoUsuario=" + tipoUsuario +
                 '}';
     }

@@ -22,9 +22,6 @@ public class UsuarioDTO {
     @NotBlank @Email @Size(max = 150)
     private String correo;
 
-    @NotBlank @Size(max = 50)
-    private String rol;
-
     // Solo escritura (no se devuelve)
     @Size(min = 6, max = 200)
     @JsonProperty(access = Access.WRITE_ONLY)

@@ -32,6 +32,7 @@ public class AuthServices {
     public Optional<Usuario> obtenerUsuario(String email){
         // Buscar usuario completo en la base de datos
         Optional<Usuario> userOpt = repo.findByCorreo(email);
+        System.out.println("Se obtuvo el Usuario Completo");
         return (userOpt != null) ? userOpt : null;
     }
 }

@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
         "http://127.0.0.1:5500","http://localhost:5500",
         "http://127.0.0.1:5502","http://localhost:5502"
 })
-@RequestMapping("/api/usuarios")
+    @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
 public class UsuarioController {
 
@@ -83,9 +83,6 @@ public class UsuarioController {
                 case "correo":
                     resultPage = usuarioService.buscarPorCorreo(search, pageable);
                     break;
-                case "rol":
-                    resultPage = usuarioService.buscarPorRol(search, pageable);
-                    break;
                 default:
                     resultPage = usuarioService.listar(pageable);
                     break;
@@ -110,7 +107,6 @@ public class UsuarioController {
             UsuarioDTO dto = new UsuarioDTO();
             dto.setNombreUsuario(nombreUsuario);
             dto.setCorreo(correo);
-            dto.setRol(rol);
             dto.setPassword(password);
             dto.setIdTipoUsuario(idTipoUsuario); // Seteado
 
@@ -141,7 +137,6 @@ public class UsuarioController {
             dto.setIdUsuario(id);
             dto.setNombreUsuario(nombreUsuario);
             dto.setCorreo(correo);
-            dto.setRol(rol);
             dto.setIdTipoUsuario(idTipoUsuario); // Seteado
 
             if (password != null && !password.isBlank()) {

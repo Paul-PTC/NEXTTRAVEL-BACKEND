@@ -14,7 +14,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Page<Usuario> findByCorreoContainingIgnoreCase(String q, Pageable pageable);
 
-    Page<Usuario> findByRolIgnoreCase(String rol, Pageable pageable);
+    //Page<Usuario> findByRolIgnoreCase(String rol, Pageable pageable);
 
     boolean existsByNombreUsuarioIgnoreCase(String nombreUsuario);
 

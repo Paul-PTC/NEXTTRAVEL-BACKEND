@@ -35,7 +35,7 @@ public class UsuarioService {
                 .idUsuario(u.getIdUsuario())
                 .nombreUsuario(u.getNombreUsuario())
                 .correo(u.getCorreo())
-                .rol(u.getRol())
+                .idTipoUsuario(u.getTipoUsuario().getId())
                 .build();
     }
 
@@ -62,13 +62,6 @@ public class UsuarioService {
         return repo.findByCorreoContainingIgnoreCase(q, pageable).map(this::toDTO);
     }
 
-    public Page<UsuarioDTO> buscarPorRol(String rol, Pageable pageable) {
-        if (!notBlank(rol)) {
-            throw new BadRequestException("El parámetro 'rol' no puede estar vacío.");
-        }
-        return repo.findByRolIgnoreCase(rol, pageable).map(this::toDTO);
-    }
-
     // ===== Crear =====
     @Transactional
     public UsuarioDTO crear(UsuarioDTO dto) {
@@ -77,9 +70,6 @@ public class UsuarioService {
         }
         if (!notBlank(dto.getCorreo())) {
             throw new BadRequestException("El campo 'correo' es obligatorio.");
-        }
-        if (!notBlank(dto.getRol())) {
-            throw new BadRequestException("El campo 'rol' es obligatorio.");
         }
         if (!notBlank(dto.getPassword())) {
             throw new BadRequestException("El campo 'password' es obligatorio.");
@@ -140,9 +130,6 @@ public class UsuarioService {
             u.setCorreo(dto.getCorreo());
         }
 
-        if (notBlank(dto.getRol())) {
-            u.setRol(dto.getRol());
-        }
 
         if (notBlank(dto.getPassword())) {
             u.setContraseniaHash(passwordEncoder.encode(dto.getPassword()));
