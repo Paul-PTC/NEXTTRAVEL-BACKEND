@@ -103,6 +103,7 @@ public class UsuarioController {
             @RequestParam String correo,
             @RequestParam String rol,
             @RequestParam String password,
+            @RequestParam Long idTipoUsuario, // NECESARIO
             @RequestParam(value = "image", required = false) MultipartFile file
     ) {
         try {
@@ -111,7 +112,7 @@ public class UsuarioController {
             dto.setCorreo(correo);
             dto.setRol(rol);
             dto.setPassword(password);
-
+            dto.setIdTipoUsuario(idTipoUsuario); // Seteado
 
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.crear(dto));
         } catch (Exception e) {
@@ -130,6 +131,7 @@ public class UsuarioController {
             @RequestParam String nombreUsuario,
             @RequestParam String correo,
             @RequestParam String rol,
+            @RequestParam Long idTipoUsuario, // NECESARIO
             @RequestParam(required = false) String password,
             @RequestParam(value = "Foto_Url", required = false) String fotoUrl,
             @RequestParam(value = "image", required = false) MultipartFile file
@@ -140,6 +142,7 @@ public class UsuarioController {
             dto.setNombreUsuario(nombreUsuario);
             dto.setCorreo(correo);
             dto.setRol(rol);
+            dto.setIdTipoUsuario(idTipoUsuario); // Seteado
 
             if (password != null && !password.isBlank()) {
                 dto.setPassword(password);
@@ -161,6 +164,7 @@ public class UsuarioController {
             ));
         }
     }
+
 
     // DELETE: eliminar un usuario por ID
     @DeleteMapping("/UsuarioE/{id}")

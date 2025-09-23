@@ -2,10 +2,7 @@ package NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Nucleo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,5 +29,12 @@ public class UsuarioDTO {
     @Size(min = 6, max = 200)
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
+
+    @Positive(message = "El valor proporcionado debe ser positivo y valido")
+    private Long idTipoUsuario;
+
+    //Campo adicional
+    private String nombreTipoUsuario;
+
 
 }

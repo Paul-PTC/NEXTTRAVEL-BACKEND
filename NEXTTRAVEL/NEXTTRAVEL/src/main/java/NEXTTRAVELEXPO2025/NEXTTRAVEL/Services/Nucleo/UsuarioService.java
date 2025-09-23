@@ -1,14 +1,17 @@
 package NEXTTRAVELEXPO2025.NEXTTRAVEL.Services.Nucleo;
 
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Nucleo.TipoUsuario;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Entities.Nucleo.Usuario;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.BadRequestException;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.ConflictException;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Exeptions.ResourceNotFoundException;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Models.DTO.Nucleo.UsuarioDTO;
+import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Nucleo.TipoUsuarioRepository;
 import NEXTTRAVELEXPO2025.NEXTTRAVEL.Repositories.Nucleo.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsuarioService {
 
     private final UsuarioRepository repo;
+    @Autowired
+    private TipoUsuarioRepository tipoUsuarioRepository;
     private final PasswordEncoder passwordEncoder;
 
     // ===== Helpers =====
@@ -87,12 +92,16 @@ public class UsuarioService {
             throw new ConflictException("El correo ya está registrado: " + dto.getCorreo());
         }
 
+        // Obtener TipoUsuario desde el repositorio
+        TipoUsuario tipoUsuario = tipoUsuarioRepository.findById(dto.getIdTipoUsuario())
+                .orElseThrow(() -> new BadRequestException("Tipo de usuario no válido con ID: " + dto.getIdTipoUsuario()));
+
         try {
             Usuario u = Usuario.builder()
                     .nombreUsuario(dto.getNombreUsuario())
                     .correo(dto.getCorreo())
-                    .rol(dto.getRol())
                     .idUsuario(dto.getIdUsuario())
+                    .tipoUsuario(tipoUsuario)
                     .contraseniaHash(passwordEncoder.encode(dto.getPassword()))
                     .build();
 
@@ -139,6 +148,12 @@ public class UsuarioService {
             u.setContraseniaHash(passwordEncoder.encode(dto.getPassword()));
         }
 
+        if (dto.getIdTipoUsuario() != null && !dto.getIdTipoUsuario().equals(u.getTipoUsuario().getId())) {
+            TipoUsuario tipoUsuario = tipoUsuarioRepository.findById(dto.getIdTipoUsuario())
+                    .orElseThrow(() -> new BadRequestException("Tipo de usuario no válido con ID: " + dto.getIdTipoUsuario()));
+            u.setTipoUsuario(tipoUsuario);
+        }
+
         try {
             Usuario actualizado = repo.save(u);
             log.info("Usuario actualizado: {} (id={})", actualizado.getNombreUsuario(), id);
@@ -148,6 +163,7 @@ public class UsuarioService {
                     + ex.getMostSpecificCause().getMessage());
         }
     }
+
 
     // ===== Eliminar por ID =====
     @Transactional
